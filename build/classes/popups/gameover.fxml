@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="400.0" styleClass="popupanchor" stylesheets="@../styles/Stye.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="300.0" prefWidth="400.0" styleClass="popuppane" stylesheets="@../styles/Stye.css">
+         <children>
+            <ImageView fitHeight="389.0" fitWidth="369.0" layoutX="16.0" layoutY="-49.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/images/colorful_neon_border.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="131.0" fitWidth="155.0" layoutX="120.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/images/GAMEOVER.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="73.0" fitWidth="133.0" layoutX="134.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/images/oops.gif" />
+               </image>
+            </ImageView>
+            <Button layoutX="24.0" layoutY="255.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" styleClass="cancelbuutton" text="Replay" />
+            <Button layoutX="282.0" layoutY="255.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" styleClass="cancelbuutton" text="Leave" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <InnerShadow blurType="GAUSSIAN" choke="0.19" height="255.0" offsetX="10.0" offsetY="10.0" radius="127.0" width="255.0" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>

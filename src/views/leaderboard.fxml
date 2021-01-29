@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LeaderBoardController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/43.png" />
+         </image>
+      </ImageView>
+      <TableView id="leaderBoardTable" fx:id="leaderBoardTable" editable="true" layoutY="80.0" prefHeight="410.0" prefWidth="600.0" stylesheets="@../styles/multiplayermode.css">
+        <columns>
+          <TableColumn fx:id="playerNameCol" editable="false" prefWidth="283.0" sortable="false" text="players" />
+          <TableColumn fx:id="pointsCol" prefWidth="176.0" text="points" />
+            <TableColumn fx:id="statusCol" prefWidth="136.0" style="-fx-text-alignment: right;" text="status" />
+        </columns>
+         <effect>
+            <Glow level="0.19" />
+         </effect>
+      </TableView>
+      <Label id="label" layoutX="212.0" layoutY="32.0" stylesheets="@../styles/multiplayermode.css" text="LeaderBoard">
+         <effect>
+            <Glow level="1.0">
+               <input>
+                  <DropShadow color="#aaebee" height="0.0" radius="0.0" width="0.0" />
+               </input></Glow>
+         </effect></Label>
+      <Button id="directionbtn" fx:id="inviteBtn" layoutX="467.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleInviteBtnAction" prefHeight="40.0" prefWidth="90.0" stylesheets="@../styles/multiplayermode.css" text="Invite" textFill="#61d3dd">
+         <effect>
+            <Glow level="0.5">
+               <input>
+                  <DropShadow color="#79d5da" />
+               </input>
+            </Glow>
+         </effect></Button>
+      <Button id="directionbtn" fx:id="backBtn" layoutX="39.0" layoutY="520.0" mnemonicParsing="false" onAction="#handleBackBtnAction" prefHeight="40.0" prefWidth="90.0" stylesheets="@../styles/multiplayermode.css" text="Back" textFill="#61d3dd">
+         <effect>
+            <Glow level="0.5">
+               <input>
+                  <DropShadow color="#79d5da" />
+               </input>
+            </Glow>
+         </effect></Button>
+      <FontAwesomeIconView fx:id="exitGameIcon" fill="#cd71ca" glyphName="CLOSE" layoutX="563.0" layoutY="27.0" onMouseClicked="#exitGameClicked" size="22">
+         <effect>
+            <Glow level="0.5" />
+         </effect>
+      </FontAwesomeIconView>
+   </children>
+</AnchorPane>

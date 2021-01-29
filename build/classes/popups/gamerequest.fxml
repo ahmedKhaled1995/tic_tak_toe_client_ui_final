@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="400.0" styleClass="popupanchor" stylesheets="@../styles/Stye.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="300.0" prefWidth="400.0" styleClass="popuppane" stylesheets="@../styles/Stye.css">
+         <children>
+            <ImageView fitHeight="161.0" fitWidth="328.0" layoutX="39.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/images/play.gif" />
+               </image>
+            </ImageView>
+            <Text layoutX="15.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="10.0" text="Sondos says:" wrappingWidth="370.4499969482422">
+               <font>
+                  <Font name="Snap ITC" size="42.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="0.3666666666666667" endY="1.0" startX="0.3571428571428571" startY="0.20476190476190476">
+                     <stops>
+                        <Stop color="#ff80ff" />
+                        <Stop color="#ff80ff" offset="0.03065134099616846" />
+                        <Stop color="WHITE" offset="0.2452107279693485" />
+                        <Stop color="#fffa20" offset="0.38401074376900834" />
+                        <Stop color="WHITE" offset="0.5478927203065129" />
+                        <Stop color="#50efff" offset="0.6705375834419557" />
+                        <Stop color="WHITE" offset="0.8160919540229885" />
+                        <Stop color="#f24da6" offset="0.9195402298850575" />
+                        <Stop color="#f24da6" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Text>
+            <Button layoutX="69.0" layoutY="240.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" styleClass="cancelbuutton" text="Accept" />
+            <Button layoutX="247.0" layoutY="240.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" styleClass="signupbuutton" text="Reject" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <InnerShadow blurType="GAUSSIAN" choke="0.19" height="255.0" offsetX="10.0" offsetY="10.0" radius="127.0" width="255.0" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>
