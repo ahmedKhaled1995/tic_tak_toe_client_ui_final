@@ -5,21 +5,18 @@
  */
 package controllers;
 
-import sys.GameLauncher;
+import Main.EntryPoint;
 import util.SwitchSceneTo;
 import util.GameConfig;
-import util.PopUpScene;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,7 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import sys.Online;
+import Main.PlayerRow;
 
 /**
  * FXML Controller class
@@ -37,18 +34,18 @@ import sys.Online;
 public class LeaderBoardController implements Initializable {
 
     @FXML
-    private TableView<Online> leaderBoardTable;
+    private TableView<PlayerRow> leaderBoardTable;
     @FXML
-    private TableColumn<Online, String> playerNameCol;
+    private TableColumn<PlayerRow, String> playerNameCol;
     @FXML
-    private TableColumn<Online, Integer> pointsCol;
+    private TableColumn<PlayerRow, Integer> pointsCol;
     @FXML
-    private TableColumn<Online, ImageView> statusCol;
+    private TableColumn<PlayerRow, ImageView> statusCol;
 
     //-------------------------------------------------------------------------
-    private TableColumn<Online, String> playernamecol;
-    private TableColumn<Online, Integer> pointcolumn;
-    private TableColumn<Online, ImageView> statuscol;
+    private TableColumn<PlayerRow, String> playernamecol;
+    private TableColumn<PlayerRow, Integer> pointcolumn;
+    private TableColumn<PlayerRow, ImageView> statuscol;
 
     private final int gameMode = 2;
     private final int viewIndex = 4;
@@ -67,8 +64,8 @@ public class LeaderBoardController implements Initializable {
         pointsCol.setCellValueFactory(new PropertyValueFactory<>("point"));
         statusCol.setCellValueFactory(new PropertyValueFactory<>("photo"));
         //leaderBoardTable.setItems(list3);
-        GameLauncher.getViewUpdater().setLeaderBoardTable(this.leaderBoardTable);
-        GameLauncher.getGameClient().requestUsers();
+        EntryPoint.getViewUpdater().setLeaderBoardTable(this.leaderBoardTable);
+        EntryPoint.getGameClient().requestUsers();
     }
 
     @FXML
@@ -77,7 +74,7 @@ public class LeaderBoardController implements Initializable {
         //GameConfig.setGameMode(gameMode);
         //SwitchSceneTo.gameBoardScene(event);
         String opponentName = this.leaderBoardTable.getSelectionModel().getSelectedItem().getName();
-        GameLauncher.getGameClient().startGameWithOpponent(opponentName);
+        EntryPoint.getGameClient().startGameWithOpponent(opponentName);
     }
 
     @FXML
@@ -90,7 +87,8 @@ public class LeaderBoardController implements Initializable {
     private void exitGameClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
             if (exitApplication() == true) {
-                SwitchSceneTo.getStage(event).close();
+                //SwitchSceneTo.getStage(event).close();
+                System.exit(0);
             }
         }
     }

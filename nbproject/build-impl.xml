@@ -391,8 +391,8 @@ is divided into following sections:
                 <junit dir="${work.dir}" errorproperty="tests.failed" failureproperty="tests.failed" fork="true" forkmode="${junit.forkmode}" showoutput="true" tempdir="${build.dir}">
                     <test methods="@{testmethods}" name="@{testincludes}" todir="${build.test.results.dir}"/>
                     <syspropertyset>
-                        <propertyref prefix="test-sys-prop."/>
-                        <mapper from="test-sys-prop.*" to="*" type="glob"/>
+                        <propertyref prefix="test-Main-prop."/>
+                        <mapper from="test-Main-prop.*" to="*" type="glob"/>
                     </syspropertyset>
                     <formatter type="brief" usefile="false"/>
                     <formatter type="xml"/>
@@ -421,8 +421,8 @@ is divided into following sections:
                         </fileset>
                     </batchtest>
                     <syspropertyset>
-                        <propertyref prefix="test-sys-prop."/>
-                        <mapper from="test-sys-prop.*" to="*" type="glob"/>
+                        <propertyref prefix="test-Main-prop."/>
+                        <mapper from="test-Main-prop.*" to="*" type="glob"/>
                     </syspropertyset>
                     <formatter type="brief" usefile="false"/>
                     <formatter type="xml"/>
@@ -453,8 +453,8 @@ is divided into following sections:
                 <testng classfilesetref="test.set" failureProperty="tests.failed" listeners="org.testng.reporters.VerboseReporter" methods="${testng.methods.arg}" mode="${testng.mode}" outputdir="${build.test.results.dir}" suitename="TicTacToe" testname="TestNG tests" workingDir="${work.dir}">
                     <xmlfileset dir="${build.test.classes.dir}" includes="@{testincludes}"/>
                     <propertyset>
-                        <propertyref prefix="test-sys-prop."/>
-                        <mapper from="test-sys-prop.*" to="*" type="glob"/>
+                        <propertyref prefix="test-Main-prop."/>
+                        <mapper from="test-Main-prop.*" to="*" type="glob"/>
                     </propertyset>
                     <customize/>
                 </testng>
@@ -533,8 +533,8 @@ is divided into following sections:
                 <junit dir="${work.dir}" errorproperty="tests.failed" failureproperty="tests.failed" fork="true" forkmode="${junit.forkmode}" showoutput="true" tempdir="${build.dir}">
                     <test methods="@{testmethods}" name="@{testincludes}" todir="${build.test.results.dir}"/>
                     <syspropertyset>
-                        <propertyref prefix="test-sys-prop."/>
-                        <mapper from="test-sys-prop.*" to="*" type="glob"/>
+                        <propertyref prefix="test-Main-prop."/>
+                        <mapper from="test-Main-prop.*" to="*" type="glob"/>
                     </syspropertyset>
                     <formatter type="brief" usefile="false"/>
                     <formatter type="xml"/>
@@ -565,8 +565,8 @@ is divided into following sections:
                         </fileset>
                     </batchtest>
                     <syspropertyset>
-                        <propertyref prefix="test-sys-prop."/>
-                        <mapper from="test-sys-prop.*" to="*" type="glob"/>
+                        <propertyref prefix="test-Main-prop."/>
+                        <mapper from="test-Main-prop.*" to="*" type="glob"/>
                     </syspropertyset>
                     <formatter type="brief" usefile="false"/>
                     <formatter type="xml"/>
@@ -665,8 +665,8 @@ is divided into following sections:
                 <j2seproject3:testng-debug-impl testClass="@{testClass}" testMethod="@{testMethod}">
                     <customize2>
                         <syspropertyset>
-                            <propertyref prefix="test-sys-prop."/>
-                            <mapper from="test-sys-prop.*" to="*" type="glob"/>
+                            <propertyref prefix="test-Main-prop."/>
+                            <mapper from="test-Main-prop.*" to="*" type="glob"/>
                         </syspropertyset>
                     </customize2>
                 </j2seproject3:testng-debug-impl>
@@ -710,8 +710,8 @@ is divided into following sections:
                         <path path="${run.classpath}"/>
                     </classpath>
                     <syspropertyset>
-                        <propertyref prefix="run-sys-prop."/>
-                        <mapper from="run-sys-prop.*" to="*" type="glob"/>
+                        <propertyref prefix="run-Main-prop."/>
+                        <mapper from="run-Main-prop.*" to="*" type="glob"/>
                     </syspropertyset>
                     <customize/>
                 </java>
@@ -787,8 +787,8 @@ is divided into following sections:
                         <path path="@{classpath}"/>
                     </classpath>
                     <syspropertyset>
-                        <propertyref prefix="run-sys-prop."/>
-                        <mapper from="run-sys-prop.*" to="*" type="glob"/>
+                        <propertyref prefix="run-Main-prop."/>
+                        <mapper from="run-Main-prop.*" to="*" type="glob"/>
                     </syspropertyset>
                     <customize/>
                 </java>
@@ -812,8 +812,8 @@ is divided into following sections:
                         <path path="@{classpath}"/>
                     </classpath>
                     <syspropertyset>
-                        <propertyref prefix="run-sys-prop."/>
-                        <mapper from="run-sys-prop.*" to="*" type="glob"/>
+                        <propertyref prefix="run-Main-prop."/>
+                        <mapper from="run-Main-prop.*" to="*" type="glob"/>
                     </syspropertyset>
                     <customize/>
                 </java>
@@ -1151,8 +1151,8 @@ is divided into following sections:
                 <path path="${run.test.classpath}"/>
             </classpath>
             <syspropertyset>
-                <propertyref prefix="test-sys-prop."/>
-                <mapper from="test-sys-prop.*" to="*" type="glob"/>
+                <propertyref prefix="test-Main-prop."/>
+                <mapper from="test-Main-prop.*" to="*" type="glob"/>
             </syspropertyset>
             <formatter type="brief" usefile="false"/>
             <formatter type="xml"/>

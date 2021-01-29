@@ -6,12 +6,9 @@
 package controllers;
 
 import Main.EntryPoint;
-import javafx.scene.input.MouseEvent;
-import util.SwitchSceneTo;
-import util.GameConfig;
-
+import Main.Resource;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -20,73 +17,114 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import popups.LoserPopUp;
+import popups.TiePopUp;
+import popups.WinnerPopup;
+import util.GameConfig;
+import util.SwitchSceneTo;
 
 /**
- * FXML Controller class
  *
- * @author LENOVO
+ * @author Hager
  */
-public class GameBoardController implements Initializable {
+public class BoardController implements Initializable {
 
     @FXML
     private Pane xplayerpane;
+
     @FXML
     private ImageView xplayerimage;
+
     @FXML
     private Pane xpane;
+
+    @FXML
+    private ImageView xiamge;
+
     @FXML
     private Button zone1;
+
     @FXML
     private Button zone2;
+
     @FXML
     private Button zone6;
+
     @FXML
     private Button zone5;
+
     @FXML
     private Button zone4;
+
     @FXML
     private Button zone7;
+
     @FXML
     private Button zone8;
+
     @FXML
     private Button zone9;
+
     @FXML
     private Pane opane;
+
+    @FXML
+    private ImageView oimage;
+
     @FXML
     private Button zone3;
+
     @FXML
     private Pane oplayerpane;
+
     @FXML
     private ImageView oplayerimage;
+
     @FXML
     private Label yourscore;
+
     @FXML
     private Label opponentscore;
+
     @FXML
-    private Button newGameBtn;
+    private Label userName;
+
     @FXML
-    private Button mainMenuBtn;
+    private Label opponentName;
+
+    @FXML
+    private Button chat;
+
+    @FXML
+    private Button send;
+
+    @FXML
+    private TextField textmassage;
+
+    @FXML
+    private Button newgame;
+
+    @FXML
+    private Button mainmeu;
+
     @FXML
     private Button exit;
-    @FXML
-    private Label playerScoreLabel;
-    @FXML
-    private Label opponentScoreLabel;
 
-    private Button ticTacToeButtons[][];
-    private int wins, losses, ties, numOfGames, turn; //first turn x ,2nd turn O o gets 4 turns
+    private Button ticTacToeButtons [][];
+    private Button[] buttons;
+    private int wins,losses,ties,numOfGames,turn; //first turn x ,2nd turn O o gets 4 turns
     private boolean gameOver = false;
     private boolean aiThinking = false;
-    
     private final int viewIndex = 4;
-
-    private Button[] buttons;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -97,6 +135,18 @@ public class GameBoardController implements Initializable {
         if(GameConfig.getGameMode() == 2){  // Multiplayer
             buttons = new Button[]{zone1, zone2, zone3, zone4, zone5, zone6, zone7, zone8, zone9};
             EntryPoint.getViewUpdater().setBoardButtons(buttons);
+            this.userName.setText(EntryPoint.getGameClient().getUserName());
+            this.opponentName.setText(EntryPoint.getGameClient().getOpponentName());
+            this.yourscore.setText(String.valueOf(EntryPoint.getGameClient().getScore()));
+            this.opponentscore.setText(String.valueOf(EntryPoint.getGameClient().getOpponentScore()));
+            if(EntryPoint.getGameClient().getSymbol() == 1){  // x
+                this.xplayerimage.setImage(Resource.getXPic().getImage());
+                this.oplayerimage.setImage(Resource.getOPic().getImage());
+            }else{ // o
+                this.xplayerimage.setImage(Resource.getOPic().getImage());
+                this.oplayerimage.setImage(Resource.getXPic().getImage());
+            }
+
         }else if(GameConfig.getGameMode() == 1){   // Single player
             ticTacToeButtons = new Button[3][3];
             ticTacToeButtons[0][0] = zone1;
@@ -108,92 +158,104 @@ public class GameBoardController implements Initializable {
             ticTacToeButtons[2][0] = zone7;
             ticTacToeButtons[2][1] = zone8;
             ticTacToeButtons[2][2] = zone9;
-            setData();
             resetGame();
-        /*for(int c = 0; c < 3; c++){
-            for(int r =0; r < 3; r++){
-                ticTacToeButtons[c][r] = new Button("");
-                ticTacToeButtons[c][r].setFont(new Font(36));
-            }
-        }*/
         }
 
     }
-
-    private void setData() {
+    private void setData(){
         //TODO READ FILE
         //IF fILE CAN'T be read set data
-        wins = 0;
-        losses = 0;
-        ties = 0;
-        numOfGames = 0;
+        wins=0;
+        losses=0;
+        ties=0;
+        numOfGames=0;
     }
-
-    private void resetGame() {
-        for (int c = 0; c < 3; c++) {
-            for (int r = 0; r < 3; r++) {
-                //already instantiated 
+    private void resetGame(){
+        this.userName.setText(EntryPoint.getGameClient().getUserName());
+        this.opponentName.setText("CPU");
+        this.yourscore.setText(String.valueOf(EntryPoint.getGameClient().getScore()));
+        this.opponentscore.setText("");
+        for(int c = 0; c < 3; c++){
+            for(int r =0; r < 3; r++){
+                //already instantiated
                 //go thro button c=0 r=1 ,r=2 etc and make them all blank ""
                 ticTacToeButtons[c][r].setText("");
 
             }
         }
         turn = 0;
+        gameOver = false;
         // headerLabel.setText("X's Turn. Click a button to take a spot!");
     }
 
-    private void doButtonAction(ActionEvent event) {
-        if (!gameOver && !aiThinking) {
-            Button clickedBtn = (Button) event.getSource();
+
+
+
+
+    private void doButtonAction(ActionEvent event){
+        System.out.println("Foo");
+        if(!gameOver && !aiThinking){
+            Button clickedBtn = (Button)event.getSource();
             //already x or o(spot taken) we exit method
-            if (clickedBtn.getText().length() > 0) {
-                if (turn % 2 != 0) {
+            if(clickedBtn.getText().length() > 0){
+                if (turn % 2 !=0){
                     doTurnForAI();
                 }
                 return;
             }
-            /*turns to figure whose turn it is
+        /*turns to figure whose turn it is
         if turn =even --> x turn
         if turn = odd --> o turn
-             */
+        */
             //spot not taken,do logic
-
             String place;
 
-            if (turn % 2 == 0) {
+            if(turn %2 ==0){
                 //currently X's turn
                 place = "X";
-            } else {
+            }else{
                 //curently O's turn
                 place = "O";
             }
             turn++;
 
             clickedBtn.setText(place);
-
             //at6th turn
-            if (turn >= 5) {
+            if(turn >=5){
                 //Todo : check for winner
-                if (checkIfWon(place)) {
+                if(checkIfWon(place)) {
                     //Todo: Stop Game
                     // headerLabel.setText(String.format("%s Won!", place));
+                    Platform.runLater(()->{
+                        if(place.equalsIgnoreCase("x")){
+                            WinnerPopup winnerPopup = new WinnerPopup();
+                            winnerPopup.display();
+                        }else{
+                            LoserPopUp loserPopUp = new LoserPopUp();
+                            loserPopUp.display();
+                        }
+                    });
                     gameOver = true;
                     return;
                 }
             }
-            if (turn == 9) {
+            if(turn == 9){
                 gameOver = true;
                 //headerLabel.setText("Game Over.. Draw! No Winner");
+                Platform.runLater(()->{
+                    TiePopUp tiePopUp = new TiePopUp();
+                    tiePopUp.display();
+                });
                 return;
             }
             //headerLabel.setText(String.format("%s's turn",turn %2 == 0? "X" : "O"));
-            if (turn % 2 != 0) {
+            if (turn %2 != 0){
                 //AI'S turn
                 aiThinking = true;
-                Runnable runnable = new Runnable() {
+                Runnable runnable = new Runnable(){
                     @Override
-                    public void run() {
-                        Platform.runLater(() -> {
+                    public void run(){
+                        Platform.runLater(() ->{
                             doTurnForAI();
                         });
                     }
@@ -212,44 +274,44 @@ public class GameBoardController implements Initializable {
         //check all columns vertically
         //check diagonally -> 2 diagonals 00 11 22, 02,11,20
         //check diagonally both ways
-        if (player.equals(ticTacToeButtons[0][0].getText())
-                && player.equals(ticTacToeButtons[1][1].getText())
-                && player.equals(ticTacToeButtons[2][2].getText())) {
+        if(player.equals(ticTacToeButtons[0][0].getText()) &&
+                player.equals(ticTacToeButtons[1][1].getText()) &&
+                player.equals(ticTacToeButtons[2][2].getText())){
             return true;
         }
-        if (player.equals(ticTacToeButtons[0][0].getText())
-                && player.equals(ticTacToeButtons[0][1].getText())
-                && player.equals(ticTacToeButtons[0][2].getText())) {
+        if(player.equals(ticTacToeButtons[0][0].getText()) &&
+                player.equals(ticTacToeButtons[0][1].getText()) &&
+                player.equals(ticTacToeButtons[0][2].getText())){
             return true;
         }
-        if (player.equals(ticTacToeButtons[1][0].getText())
-                && player.equals(ticTacToeButtons[1][1].getText())
-                && player.equals(ticTacToeButtons[1][2].getText())) {
+        if(player.equals(ticTacToeButtons[1][0].getText()) &&
+                player.equals(ticTacToeButtons[1][1].getText()) &&
+                player.equals(ticTacToeButtons[1][2].getText())){
             return true;
         }
-        if (player.equals(ticTacToeButtons[2][0].getText())
-                && player.equals(ticTacToeButtons[2][1].getText())
-                && player.equals(ticTacToeButtons[2][2].getText())) {
+        if(player.equals(ticTacToeButtons[2][0].getText()) &&
+                player.equals(ticTacToeButtons[2][1].getText()) &&
+                player.equals(ticTacToeButtons[2][2].getText())){
             return true;
         }
-        if (player.equals(ticTacToeButtons[0][0].getText())
-                && player.equals(ticTacToeButtons[1][0].getText())
-                && player.equals(ticTacToeButtons[2][0].getText())) {
+        if(player.equals(ticTacToeButtons[0][0].getText()) &&
+                player.equals(ticTacToeButtons[1][0].getText()) &&
+                player.equals(ticTacToeButtons[2][0].getText())){
             return true;
         }
-        if (player.equals(ticTacToeButtons[0][1].getText())
-                && player.equals(ticTacToeButtons[1][1].getText())
-                && player.equals(ticTacToeButtons[2][1].getText())) {
+        if(player.equals(ticTacToeButtons[0][1].getText()) &&
+                player.equals(ticTacToeButtons[1][1].getText()) &&
+                player.equals(ticTacToeButtons[2][1].getText())){
             return true;
         }
-        if (player.equals(ticTacToeButtons[0][2].getText())
-                && player.equals(ticTacToeButtons[1][1].getText())
-                && player.equals(ticTacToeButtons[2][2].getText())) {
+        if(player.equals(ticTacToeButtons[0][2].getText()) &&
+                player.equals(ticTacToeButtons[1][2].getText()) &&
+                player.equals(ticTacToeButtons[2][2].getText())){
             return true;
         }
-        if (player.equals(ticTacToeButtons[0][2].getText())
-                && player.equals(ticTacToeButtons[1][1].getText())
-                && player.equals(ticTacToeButtons[2][0].getText())) {
+        if(player.equals(ticTacToeButtons[0][2].getText()) &&
+                player.equals(ticTacToeButtons[1][1].getText()) &&
+                player.equals(ticTacToeButtons[2][0].getText())){
             return true;
         }
 
@@ -261,10 +323,38 @@ public class GameBoardController implements Initializable {
         //randomly pick buttonsS
         System.out.println("Ai's tutn");
         aiThinking = false;
-        int row = (int) (Math.random() * 3);
-        int col = (int) (Math.random() * 3);
+        int row = (int)(Math.random()*3);
+        int col = (int)(Math.random()*3);
         System.out.println(row + ":" + col);
         ticTacToeButtons[row][col].fire();
+    }
+
+
+    @FXML
+    void mainmenuHandle(ActionEvent event) {
+        if(GameConfig.getGameMode() == 1){ // Single player
+            SwitchSceneTo.showScene(1);
+        }
+        //System.out.println("back to mainmenu");
+    }
+
+    @FXML
+    void newgameHandle(ActionEvent event) {
+        if(GameConfig.getGameMode() == 1){ // Single player
+            resetGame();
+        }
+        //System.out.println("start new game");
+    }
+
+    @FXML
+    void sendHandle(MouseEvent event) {
+        System.out.println("send your massege");
+    }
+
+    @FXML
+    void exit(ActionEvent event) {
+        System.exit(0);
+
     }
 
     @FXML
@@ -273,8 +363,7 @@ public class GameBoardController implements Initializable {
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[0].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[0].getId(),
                         EntryPoint.getGameClient().getSymbol());
-                System.out.println(this.buttons[0].getId());
-                System.out.println(EntryPoint.getGameClient().getSymbol());
+
             }
         }else if(GameConfig.getGameMode() == 1){
             doButtonAction(event);
@@ -288,8 +377,6 @@ public class GameBoardController implements Initializable {
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[1].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[1].getId(),
                         EntryPoint.getGameClient().getSymbol());
-                System.out.println(this.buttons[1].getId());
-                System.out.println(EntryPoint.getGameClient().getSymbol());
             }
         }else if(GameConfig.getGameMode() == 1){
             doButtonAction(event);
@@ -302,8 +389,6 @@ public class GameBoardController implements Initializable {
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[2].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[2].getId(),
                         EntryPoint.getGameClient().getSymbol());
-                System.out.println(this.buttons[2].getId());
-                System.out.println(EntryPoint.getGameClient().getSymbol());
             }
         }else if(GameConfig.getGameMode() == 1){
             doButtonAction(event);
@@ -316,8 +401,6 @@ public class GameBoardController implements Initializable {
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[3].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[3].getId(),
                         EntryPoint.getGameClient().getSymbol());
-                System.out.println(this.buttons[3].getId());
-                System.out.println(EntryPoint.getGameClient().getSymbol());
             }
         }else if(GameConfig.getGameMode() == 1){
             doButtonAction(event);
@@ -330,8 +413,6 @@ public class GameBoardController implements Initializable {
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[4].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[4].getId(),
                         EntryPoint.getGameClient().getSymbol());
-                System.out.println(this.buttons[4].getId());
-                System.out.println(EntryPoint.getGameClient().getSymbol());
             }
         }else if(GameConfig.getGameMode() == 1){
             doButtonAction(event);
@@ -344,8 +425,6 @@ public class GameBoardController implements Initializable {
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[5].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[5].getId(),
                         EntryPoint.getGameClient().getSymbol());
-                System.out.println(this.buttons[5].getId());
-                System.out.println(EntryPoint.getGameClient().getSymbol());
             }
         }else if(GameConfig.getGameMode() == 1){
             doButtonAction(event);
@@ -358,8 +437,6 @@ public class GameBoardController implements Initializable {
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[6].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[6].getId(),
                         EntryPoint.getGameClient().getSymbol());
-                System.out.println(this.buttons[6].getId());
-                System.out.println(EntryPoint.getGameClient().getSymbol());
             }
         }else if(GameConfig.getGameMode() == 1){
             doButtonAction(event);
@@ -372,8 +449,6 @@ public class GameBoardController implements Initializable {
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[7].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[7].getId(),
                         EntryPoint.getGameClient().getSymbol());
-                System.out.println(this.buttons[7].getId());
-                System.out.println(EntryPoint.getGameClient().getSymbol());
             }
         }else if(GameConfig.getGameMode() == 1){
             doButtonAction(event);
@@ -386,68 +461,10 @@ public class GameBoardController implements Initializable {
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[8].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[8].getId(),
                         EntryPoint.getGameClient().getSymbol());
-                System.out.println(this.buttons[8].getId());
-                System.out.println(EntryPoint.getGameClient().getSymbol());
             }
         }else if(GameConfig.getGameMode() == 1){
             doButtonAction(event);
         }
-    }
-
-    @FXML
-    private void handleNewGameBtnAction(ActionEvent event) {
-        resetGame();
-    }   
-
-    @FXML
-    private void handleMainMenuBtnAction(ActionEvent event) {
-        GameConfig.setGameDifficultyLevel(0);
-        GameConfig.setGameMode(0);
-        SwitchSceneTo.homeScene(event);
-    }
-
-    @FXML
-    void mainmenuHandle(MouseEvent event) {
-        System.out.println("back to mainmenu");
-    }
-
-    @FXML
-    void newgameHandle(MouseEvent event) {
-        System.out.println("start new game");
-    }
-
-    @FXML
-    void sendHandle(MouseEvent event) {
-        System.out.println("send your massege");
-    }
-
-    @FXML
-    private void exit(ActionEvent event) {
-        if(exitApplication() == true) {
-            SwitchSceneTo.getStage(event).close();
-        }
-    }
-
-    private boolean exitApplication() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("System Message");
-        alert.setHeaderText("Are you sure that you want to exit?");
-
-        ButtonType yes = new ButtonType("Yes");
-        ButtonType no = new ButtonType("No");
-
-        alert.getButtonTypes().setAll(yes, no);
-
-        Boolean exit = null;
-
-        Optional<ButtonType> playerChoice = alert.showAndWait();
-        if (playerChoice.get() == yes) {
-            exit = true;
-        } else if (playerChoice.get() == no) {
-            exit = false;
-        }
-
-        return exit;
     }
 
 }

@@ -21,7 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import sys.Online;
+import Main.PlayerRow;
 import util.GameConfig;
 import util.SwitchSceneTo;
 
@@ -33,13 +33,13 @@ import util.SwitchSceneTo;
 public class SavedGamesController implements Initializable {
 
     @FXML
-    private TableView<Online> savedGamesTable;
+    private TableView<PlayerRow> savedGamesTable;
     @FXML
-    private TableColumn<Online, Integer> gameIdCol;
+    private TableColumn<PlayerRow, Integer> gameIdCol;
     @FXML
-    private TableColumn<Online, String> opponentCol;
+    private TableColumn<PlayerRow, String> opponentCol;
     @FXML
-    private TableColumn<Online, ImageView> gameResultCol;
+    private TableColumn<PlayerRow, ImageView> gameResultCol;
     //------------------------------------------------------------------------
     private final int viewIndex = 5;
 
@@ -50,11 +50,11 @@ public class SavedGamesController implements Initializable {
     ImageView emojon = new ImageView("/resources/emoj8.png");
     ImageView emojoff = new ImageView("/resources/emoj9.png");
 
-    ObservableList<Online> list3 = FXCollections.observableArrayList(
-            new Online("player1", 100, maleon),
-            new Online("player2", 100, emojoff),
-            new Online("player3", 100, maleoff),
-            new Online("player4", 100, emojon)
+    ObservableList<PlayerRow> list3 = FXCollections.observableArrayList(
+            new PlayerRow("player1", 100, maleon),
+            new PlayerRow("player2", 100, emojoff),
+            new PlayerRow("player3", 100, maleoff),
+            new PlayerRow("player4", 100, emojon)
     );
 
     @Override
@@ -83,7 +83,8 @@ public class SavedGamesController implements Initializable {
     private void exitGameClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
             if (exitApplication() == true) {
-                SwitchSceneTo.getStage(event).close();
+                //SwitchSceneTo.getStage(event).close();
+                System.exit(0);
             }
         }
     }

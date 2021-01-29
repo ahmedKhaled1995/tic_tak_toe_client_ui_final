@@ -3,26 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sys;
+package Main;
 
-import java.util.ArrayList;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.image.ImageView;
 
 /**
  *
  * @author Cool IT help
  */
-public class Online {
+public class PlayerRow {
 
     public ImageView photo;
     int point;
     String name;
 
-    public Online(String name, int point, ImageView photo) {
+    public PlayerRow(String name, int point, ImageView photo) {
 
         this.photo = photo;
         this.name = name;

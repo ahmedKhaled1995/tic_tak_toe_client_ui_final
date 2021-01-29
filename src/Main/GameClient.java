@@ -1,15 +1,12 @@
-package sys;
+package Main;
 
 import javafx.application.Platform;
-import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import popups.GameRequestPopUp;
-import popups.PopupWindow;
+import popups.*;
 import util.GameConfig;
 import util.SwitchSceneTo;
 
@@ -37,6 +34,7 @@ public class GameClient {
     private int symbol;
     private boolean myTurn;
     private int score;
+    private int opponentScore;
 
     // Ui related variables
     private TreeTableView<String> playersTableTV = null;
@@ -106,6 +104,7 @@ public class GameClient {
             String myTurn = replyJson.get("myTurn").toString();
             this.gameId = id;
             this.opponentName = opponent;
+            this.opponentScore = Integer.parseInt(replyJson.get("opponentScore").toString());
             if(myTurn.equals("true")){
                 this.symbol = 1;  // 'X'
                 this.myTurn = true;
@@ -113,7 +112,6 @@ public class GameClient {
                 this.symbol = -1; // 'O'
                 this.myTurn = false;
             }
-            System.out.println("Game started");
             Platform.runLater(() -> {
                 GameConfig.setGameMode(2);
                 SwitchSceneTo.showScene(5);
@@ -140,26 +138,22 @@ public class GameClient {
             }
         }else if(type.equals("usersList")){
             JSONArray users = (JSONArray) replyJson.get("users");
-            GameLauncher.getViewUpdater().updateLeaderBoardTableView(users);
+            EntryPoint.getViewUpdater().updateLeaderBoardTableView(users);
         }else if(type.equals("newLoggedInUser")){
-            //System.out.println(replyJson.toJSONString());
             String newLoggedInUser = replyJson.get("loggedInUser").toString();
-            GameLauncher.getViewUpdater().updateLoggedInUser(newLoggedInUser);
+            EntryPoint.getViewUpdater().updateLoggedInUser(newLoggedInUser);
         }else if(type.equals("newSignedUpUser")){
             String newLoggedInUser = replyJson.get("signedUpUser").toString();
-            GameLauncher.getViewUpdater().updateSignedUpUser(newLoggedInUser);
+            EntryPoint.getViewUpdater().updateSignedUpUser(newLoggedInUser);
         }else if(type.equals("loggedOutUser")){
             String loggedOutUser = replyJson.get("loggedOutUser").toString();
-            GameLauncher.getViewUpdater().updateLoggedOutUser(loggedOutUser);
+            EntryPoint.getViewUpdater().updateLoggedOutUser(loggedOutUser);
         }else if(type.equals("gameTerminated")){
-            this.cleanAfterGameIsOver();
-            /*Platform.runLater(()->{
-                this.textField.setText("Game Terminated!");
-                for (Button button : this.buttonsArray){
-                    button.setText("");
-                }
-                PopupWindow.display("Disconnected from other player!");
-            });*/
+            //this.cleanAfterGameIsOver();
+            Platform.runLater(()->{
+                PopupWindow.display("Error: Opponent left!");
+                SwitchSceneTo.showScene(1);
+            });
         }else if(type.equals("startGameRequest")){
             String opponentName = replyJson.get("opponentName").toString();
             if(GameConfig.getGameMode() == 1 ){  // User is busy
@@ -182,11 +176,9 @@ public class GameClient {
 
         }else if(type.equals("gameRejected")){
             String error = replyJson.get("error").toString();
-            System.out.println(error);
-            /*Platform.runLater(()->{
-                String error = replyJson.get("error").toString();
+            Platform.runLater(()->{
                 PopupWindow.display(error);
-            });*/
+            });
         }
     }
 
@@ -238,7 +230,7 @@ public class GameClient {
         String lost = replyJson.get("lost").toString();
         String tie = replyJson.get("tie").toString();
         // Displaying game turn result
-        GameLauncher.getViewUpdater().updateBoard(replyJson);
+        EntryPoint.getViewUpdater().updateBoard(replyJson);
         // Check win, lose or tie conditions
         if(won.equals("false") && lost.equals("false") && tie.equals("false")){ // Game is still running
             if(replyJson.get("myTurn").toString().equals("true")){
@@ -247,14 +239,24 @@ public class GameClient {
                 this.myTurn = false;
             }
         }else if(won.equals("true")){  // This user has won
-            //Platform.runLater(()->PopupWindow.display("Congrats! You Won."));
-            this.cleanAfterGameIsOver();
+            Platform.runLater(()->{
+                WinnerPopup winnerPopup = new WinnerPopup();
+                winnerPopup.display();
+            });
+            this.score += 10;
+            //this.cleanAfterGameIsOver();
         }else if(lost.equals("true")){  // This user has lost
-            //Platform.runLater(()->PopupWindow.display("Sorry! better luck next time."));
-            this.cleanAfterGameIsOver();
+            Platform.runLater(()->{
+                LoserPopUp loserPopUp = new LoserPopUp();
+                loserPopUp.display();
+            });
+            //this.cleanAfterGameIsOver();
         }else if(tie.equals("true")){  // No one has won, it's a tie (it's a trap :D)
-            //Platform.runLater(()->PopupWindow.display("Tie!!!"));
-            this.cleanAfterGameIsOver();
+            Platform.runLater(()->{
+                TiePopUp tiePopUp = new TiePopUp();
+                tiePopUp.display();
+            });
+            //this.cleanAfterGameIsOver();
         }
     }
 
@@ -287,6 +289,10 @@ public class GameClient {
 
     public int getScore(){
         return this.score;
+    }
+
+    public int getOpponentScore(){
+        return this.opponentScore;
     }
 
     public AtomicBoolean getRunning(){

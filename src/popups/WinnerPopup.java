@@ -1,14 +1,18 @@
 package popups;
 
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import util.GameConfig;
+import util.SwitchSceneTo;
 
-public abstract class winnerBase extends AnchorPane {
+public class WinnerPopup extends AnchorPane {
 
     protected final Pane pane;
     protected final ImageView imageView;
@@ -20,7 +24,7 @@ public abstract class winnerBase extends AnchorPane {
     protected final ImageView imageView3;
     protected final InnerShadow innerShadow;
 
-    public winnerBase() {
+    public WinnerPopup() {
 
         pane = new Pane();
         imageView = new ImageView();
@@ -118,5 +122,30 @@ public abstract class winnerBase extends AnchorPane {
         pane.getChildren().add(imageView3);
         getChildren().add(pane);
 
+    }
+
+    public void display(){
+        // button ---> Replay
+        // button0 ---> Leave
+        Stage window = new Stage();
+
+        button.setOnAction((e)->{
+            if(GameConfig.getGameMode() == 1){  // Single player
+                SwitchSceneTo.showScene(5);
+            }else if(GameConfig.getGameMode() == 2){
+                SwitchSceneTo.showScene(3);
+            }
+
+            window.close();
+        });
+        button0.setOnAction((e)->{
+            SwitchSceneTo.showScene(1);
+            window.close();
+        });
+
+
+        Scene scene = new Scene(this);
+        window.setScene(scene);
+        window.showAndWait();
     }
 }

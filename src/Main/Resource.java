@@ -1,9 +1,10 @@
-package sys;
+package Main;
 
 import javafx.scene.image.ImageView;
 
 public class Resource {
 
+    //..\resources\images\x.png
 
     public static ImageView getMaleOff(){
         return  new ImageView("/resources/maleoff.png");
@@ -19,5 +20,13 @@ public class Resource {
 
     public static ImageView getEmojOff(){
         return new ImageView("/resources/emoj9.png");
+    }
+
+    public static ImageView getXPic(){
+        return new ImageView("/resources/images/x.png");
+    }
+
+    public static ImageView getOPic(){
+        return new ImageView("/resources/images/o.png");
     }
 }

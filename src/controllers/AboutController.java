@@ -41,7 +41,8 @@ public class AboutController implements Initializable {
     private void exitGameClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
             if (exitApplication() == true) {
-                SwitchSceneTo.getStage(event).close();
+                //SwitchSceneTo.getStage(event).close();
+                System.exit(0);
             }
         }
     }

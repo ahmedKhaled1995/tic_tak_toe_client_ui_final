@@ -1,9 +1,8 @@
-/*
+package Main;/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sys;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +17,7 @@ import util.SwitchSceneTo;
  *
  * @author Sondos Alagmawy
  */
-public class GameLauncher extends Application {
+public class EntryPoint extends Application {
 
     private static GameClient gameClient;
     private static Stage stage;
@@ -27,7 +26,12 @@ public class GameLauncher extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         gameClient = new GameClient();
-        GameLauncher.stage = stage;
+        EntryPoint.stage = stage;
+        // To ensure program terminates when exit icon (x) is pressed
+        EntryPoint.stage.setOnCloseRequest((e)-> {
+            System.out.println("Foo");
+            System.exit(0);
+        });
         viewUpdater = new ViewUpdater();
         Parent root = FXMLLoader.load(getClass().getResource("/views/loginmain.fxml"));
         Scene scene = new Scene(root);

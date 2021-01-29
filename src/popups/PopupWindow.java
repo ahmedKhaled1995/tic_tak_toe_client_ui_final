@@ -28,7 +28,7 @@ public class PopupWindow {
         dialogVbox.getChildren().addAll(new Text(msg), buttonHBox);
         Scene dialogScene = new Scene(dialogVbox, 250, 100);
         window.setScene(dialogScene);
-        window.show();
+        window.showAndWait();
         //window.focusedProperty();
     }
 

@@ -17,7 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import sys.GameLauncher;
+import Main.EntryPoint;
 
 /**
  *
@@ -65,7 +65,7 @@ public class SwitchSceneTo {
         try {
             Parent newView = FXMLLoader.load(SwitchSceneTo.class.getResource("../views/" + viewsList.get(viewIndex) + ".fxml"));
             makeMeMobile(newView);
-            Stage newStage = GameLauncher.getStage();
+            Stage newStage = EntryPoint.getStage();
             newStage.setScene(new Scene(newView));
             newStage.show();
         } catch (NullPointerException ex) {

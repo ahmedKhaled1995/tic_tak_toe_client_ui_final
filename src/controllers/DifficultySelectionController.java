@@ -21,7 +21,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
-import sys.DummyPlayer;
 import util.GameConfig;
 import util.SwitchSceneTo;
 
@@ -66,8 +65,8 @@ public class DifficultySelectionController implements Initializable {
         GameConfig.setGameMode(gameMode);
         GameConfig.setCurrentView(viewIndex);
         animateScreen();
-        userNameLabel.setText(DummyPlayer.getUserName());
-        scoreLabel.setText(Integer.toString(DummyPlayer.getScore()));
+        //userNameLabel.setText(DummyPlayer.getUserName());
+        //scoreLabel.setText(Integer.toString(DummyPlayer.getScore()));
     }
 
     @FXML
@@ -99,7 +98,8 @@ public class DifficultySelectionController implements Initializable {
         if (event.getButton() == MouseButton.PRIMARY) {
             System.out.println("exit Button Working");
             if (exitApplication() == true) {
-                SwitchSceneTo.getStage(event).close();
+                //SwitchSceneTo.getStage(event).close();
+                System.exit(0);
             }
         }
     }

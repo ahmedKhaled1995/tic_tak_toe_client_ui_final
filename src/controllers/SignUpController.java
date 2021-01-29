@@ -6,7 +6,6 @@
 package controllers;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +15,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import popups.PopupWindow;
-import sys.GameLauncher;
+import Main.EntryPoint;
 import util.GameConfig;
 
 /**
@@ -66,7 +65,7 @@ public class SignUpController implements Initializable {
             genderValue = selectedgender.getText();
         }
         if(verifyFields()){
-            GameLauncher.getGameClient().signUp(FnameSignup, UnameSignup, PSignup, mailSignup, genderValue);
+            EntryPoint.getGameClient().signUp(FnameSignup, UnameSignup, PSignup, mailSignup, genderValue);
         }else{
             PopupWindow.display("Error. Check your credentials!");
         }

@@ -5,7 +5,7 @@
  */
 package controllers;
 
-import sys.GameLauncher;
+import Main.EntryPoint;
 import util.SwitchSceneTo;
 import java.net.URL;
 import java.util.Optional;
@@ -23,7 +23,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
-import sys.DummyPlayer;
 import util.GameConfig;
 
 /**
@@ -69,8 +68,8 @@ public class HomeController implements Initializable {
         animateScreen();
         GameConfig.setCurrentView(viewIndex);
         GameConfig.setGameMode(gameMode);
-        userNameLabel.setText(GameLauncher.getGameClient().getUserName());
-        scoreLabel.setText(String.valueOf(GameLauncher.getGameClient().getScore()));
+        userNameLabel.setText(EntryPoint.getGameClient().getUserName());
+        scoreLabel.setText(String.valueOf(EntryPoint.getGameClient().getScore()));
     }
 
     @FXML
@@ -97,7 +96,8 @@ public class HomeController implements Initializable {
     private void exitGameClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
             if (exitApplication() == true) {
-                SwitchSceneTo.getStage(event).close();
+                //SwitchSceneTo.getStage(event).close();
+                System.exit(0);
             }
         }
     }
