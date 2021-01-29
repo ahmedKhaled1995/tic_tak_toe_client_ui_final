@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import sys.GameLauncher;
 import util.SwitchSceneTo;
 import util.GameConfig;
 import java.io.BufferedReader;
@@ -95,32 +96,38 @@ public class GameBoardController implements Initializable {
     
     private final int viewIndex = 4;
 
+    private Button[] buttons;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         GameConfig.setCurrentView(viewIndex);
-        
         System.out.println("Game Mode: " + GameConfig.getGameMode());
         System.out.println("Difficulty: " + GameConfig.getGameDiffficultyLevel());
         System.out.println("Current View: " + GameConfig.getCurrentView());
-        
-        ticTacToeButtons = new Button[3][3];
-        ticTacToeButtons[0][0] = zone1;
-        ticTacToeButtons[0][1] = zone2;
-        ticTacToeButtons[0][2] = zone3;
-        ticTacToeButtons[1][0] = zone4;
-        ticTacToeButtons[1][1] = zone5;
-        ticTacToeButtons[1][2] = zone6;
-        ticTacToeButtons[2][0] = zone7;
-        ticTacToeButtons[2][1] = zone8;
-        ticTacToeButtons[2][2] = zone9;
-        setData();
-        resetGame();
+        if(GameConfig.getGameMode() == 2){  // Multiplayer
+            buttons = new Button[]{zone1, zone2, zone3, zone4, zone5, zone6, zone7, zone8, zone9};
+            GameLauncher.getViewUpdater().setBoardButtons(buttons);
+        }else if(GameConfig.getGameMode() == 1){   // Single player
+            ticTacToeButtons = new Button[3][3];
+            ticTacToeButtons[0][0] = zone1;
+            ticTacToeButtons[0][1] = zone2;
+            ticTacToeButtons[0][2] = zone3;
+            ticTacToeButtons[1][0] = zone4;
+            ticTacToeButtons[1][1] = zone5;
+            ticTacToeButtons[1][2] = zone6;
+            ticTacToeButtons[2][0] = zone7;
+            ticTacToeButtons[2][1] = zone8;
+            ticTacToeButtons[2][2] = zone9;
+            setData();
+            resetGame();
         /*for(int c = 0; c < 3; c++){
             for(int r =0; r < 3; r++){
                 ticTacToeButtons[c][r] = new Button("");
                 ticTacToeButtons[c][r].setFont(new Font(36));
             }
         }*/
+        }
+
     }
 
     private void setData() {
@@ -272,49 +279,129 @@ public class GameBoardController implements Initializable {
 
     @FXML
     void zone1hadle(ActionEvent event) {
+        if(GameConfig.getGameMode() == 2){
+            if(GameLauncher.getGameClient().getMyTurn() && this.buttons[0].getText().equals("")){
+                GameLauncher.getGameClient().sendMoveToServer(this.buttons[0].getId(),
+                        GameLauncher.getGameClient().getSymbol());
+                System.out.println(this.buttons[0].getId());
+                System.out.println(GameLauncher.getGameClient().getSymbol());
+            }
+        }else if(GameConfig.getGameMode() == 1){
+            doButtonAction(event);
+        }
 
-        doButtonAction(event);
     }
 
     @FXML
     void zone2Handle(ActionEvent event) {
-        doButtonAction(event);
+        if(GameConfig.getGameMode() == 2){
+            if(GameLauncher.getGameClient().getMyTurn() && this.buttons[1].getText().equals("")){
+                GameLauncher.getGameClient().sendMoveToServer(this.buttons[1].getId(),
+                        GameLauncher.getGameClient().getSymbol());
+                System.out.println(this.buttons[1].getId());
+                System.out.println(GameLauncher.getGameClient().getSymbol());
+            }
+        }else if(GameConfig.getGameMode() == 1){
+            doButtonAction(event);
+        }
     }
 
     @FXML
     void zone3Handle(ActionEvent event) {
-
-        doButtonAction(event);
+        if(GameConfig.getGameMode() == 2){
+            if(GameLauncher.getGameClient().getMyTurn() && this.buttons[2].getText().equals("")){
+                GameLauncher.getGameClient().sendMoveToServer(this.buttons[2].getId(),
+                        GameLauncher.getGameClient().getSymbol());
+                System.out.println(this.buttons[2].getId());
+                System.out.println(GameLauncher.getGameClient().getSymbol());
+            }
+        }else if(GameConfig.getGameMode() == 1){
+            doButtonAction(event);
+        }
     }
 
     @FXML
     void zone4Handle(ActionEvent event) {
-        doButtonAction(event);
+        if(GameConfig.getGameMode() == 2){
+            if(GameLauncher.getGameClient().getMyTurn() && this.buttons[3].getText().equals("")){
+                GameLauncher.getGameClient().sendMoveToServer(this.buttons[3].getId(),
+                        GameLauncher.getGameClient().getSymbol());
+                System.out.println(this.buttons[3].getId());
+                System.out.println(GameLauncher.getGameClient().getSymbol());
+            }
+        }else if(GameConfig.getGameMode() == 1){
+            doButtonAction(event);
+        }
     }
 
     @FXML
     void zone5Handle(ActionEvent event) {
-        doButtonAction(event);
+        if(GameConfig.getGameMode() == 2){
+            if(GameLauncher.getGameClient().getMyTurn() && this.buttons[4].getText().equals("")){
+                GameLauncher.getGameClient().sendMoveToServer(this.buttons[4].getId(),
+                        GameLauncher.getGameClient().getSymbol());
+                System.out.println(this.buttons[4].getId());
+                System.out.println(GameLauncher.getGameClient().getSymbol());
+            }
+        }else if(GameConfig.getGameMode() == 1){
+            doButtonAction(event);
+        }
     }
 
     @FXML
     void zone6Handle(ActionEvent event) {
-        doButtonAction(event);
+        if(GameConfig.getGameMode() == 2){
+            if(GameLauncher.getGameClient().getMyTurn() && this.buttons[5].getText().equals("")){
+                GameLauncher.getGameClient().sendMoveToServer(this.buttons[5].getId(),
+                        GameLauncher.getGameClient().getSymbol());
+                System.out.println(this.buttons[5].getId());
+                System.out.println(GameLauncher.getGameClient().getSymbol());
+            }
+        }else if(GameConfig.getGameMode() == 1){
+            doButtonAction(event);
+        }
     }
 
     @FXML
     void zone7Handle(ActionEvent event) {
-        doButtonAction(event);
+        if(GameConfig.getGameMode() == 2){
+            if(GameLauncher.getGameClient().getMyTurn() && this.buttons[6].getText().equals("")){
+                GameLauncher.getGameClient().sendMoveToServer(this.buttons[6].getId(),
+                        GameLauncher.getGameClient().getSymbol());
+                System.out.println(this.buttons[6].getId());
+                System.out.println(GameLauncher.getGameClient().getSymbol());
+            }
+        }else if(GameConfig.getGameMode() == 1){
+            doButtonAction(event);
+        }
     }
 
     @FXML
     void zone8Handle(ActionEvent event) {
-        doButtonAction(event);
+        if(GameConfig.getGameMode() == 2){
+            if(GameLauncher.getGameClient().getMyTurn() && this.buttons[7].getText().equals("")){
+                GameLauncher.getGameClient().sendMoveToServer(this.buttons[7].getId(),
+                        GameLauncher.getGameClient().getSymbol());
+                System.out.println(this.buttons[7].getId());
+                System.out.println(GameLauncher.getGameClient().getSymbol());
+            }
+        }else if(GameConfig.getGameMode() == 1){
+            doButtonAction(event);
+        }
     }
 
     @FXML
     void zone9Handle(ActionEvent event) {
-        doButtonAction(event);
+        if(GameConfig.getGameMode() == 2){
+            if(GameLauncher.getGameClient().getMyTurn() && this.buttons[8].getText().equals("")){
+                GameLauncher.getGameClient().sendMoveToServer(this.buttons[8].getId(),
+                        GameLauncher.getGameClient().getSymbol());
+                System.out.println(this.buttons[8].getId());
+                System.out.println(GameLauncher.getGameClient().getSymbol());
+            }
+        }else if(GameConfig.getGameMode() == 1){
+            doButtonAction(event);
+        }
     }
 
     @FXML

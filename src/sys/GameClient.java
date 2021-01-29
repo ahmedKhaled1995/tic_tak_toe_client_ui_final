@@ -114,13 +114,10 @@ public class GameClient {
                 this.myTurn = false;
             }
             System.out.println("Game started");
-            // Updating the UI
-            /*Platform.runLater(()->{
-                this.textField.setText("Game id = " + id);
-                for (Button button : this.buttonsArray){
-                    button.setText("");
-                }
-            });*/
+            Platform.runLater(() -> {
+                GameConfig.setGameMode(2);
+                SwitchSceneTo.showScene(5);
+            });
         }else if(type.equals("gameTurnResult")) {
             handleGameTurnResult(replyJson);
         }else if(type.equals("loginResult")){
@@ -240,26 +237,8 @@ public class GameClient {
         String won = replyJson.get("won").toString();
         String lost = replyJson.get("lost").toString();
         String tie = replyJson.get("tie").toString();
-
         // Displaying game turn result
-        /*Platform.runLater(()->{
-            int index = Integer.parseInt(replyJson.get("index").toString());
-            String myTurn = replyJson.get("myTurn").toString();
-            if(this.symbol == 1){
-                if(myTurn.equals("true")){  // So the previous turn was the opponent
-                    this.buttonsArray[index].setText("O");
-                }else{
-                    this.buttonsArray[index].setText("X");
-                }
-            }else{
-                if(myTurn.equals("true")){  // So the previous turn was the opponent
-                    this.buttonsArray[index].setText("X");
-                }else{
-                    this.buttonsArray[index].setText("O");
-                }
-            }
-        });*/
-
+        GameLauncher.getViewUpdater().updateBoard(replyJson);
         // Check win, lose or tie conditions
         if(won.equals("false") && lost.equals("false") && tie.equals("false")){ // Game is still running
             if(replyJson.get("myTurn").toString().equals("true")){

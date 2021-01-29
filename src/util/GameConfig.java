@@ -23,7 +23,7 @@ public class GameConfig {
 
     /*
         Game Mode:
-        0 -> No mode has been cho
+        0 -> Watch saved matches
         1 -> Single Player Mode
         2 -> Multiplayer Mode
      */
