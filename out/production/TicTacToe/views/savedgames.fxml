@@ -21,8 +21,8 @@
       <TableView id="leaderBoardTable" fx:id="savedGamesTable" editable="true" layoutY="80.0" prefHeight="410.0" prefWidth="600.0" stylesheets="@../styles/multiplayermode.css">
          <columns>
             <TableColumn fx:id="gameIdCol" editable="false" minWidth="0.0" prefWidth="136.0" sortable="false" text="GameId" />
-            <TableColumn fx:id="opponentCol" prefWidth="294.0" text="Opponent" />
-            <TableColumn fx:id="gameResultCol" prefWidth="164.0" style="-fx-text-alignment: right;" text="win/lose" />
+            <TableColumn fx:id="opponentCol" prefWidth="294.0" text="PlayerOne" />
+            <TableColumn fx:id="gameResultCol" prefWidth="164.0" style="-fx-text-alignment: right;" text="PlayerTwo" />
          </columns>
          <effect>
             <Glow level="0.19" />

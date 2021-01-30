@@ -8,6 +8,9 @@ package controllers;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import Main.EntryPoint;
+import Main.GameRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,13 +36,13 @@ import util.SwitchSceneTo;
 public class SavedGamesController implements Initializable {
 
     @FXML
-    private TableView<PlayerRow> savedGamesTable;
+    private TableView<GameRow> savedGamesTable;
     @FXML
-    private TableColumn<PlayerRow, Integer> gameIdCol;
+    private TableColumn<GameRow, Integer> gameIdCol;
     @FXML
-    private TableColumn<PlayerRow, String> opponentCol;
+    private TableColumn<GameRow, String> opponentCol;
     @FXML
-    private TableColumn<PlayerRow, ImageView> gameResultCol;
+    private TableColumn<GameRow, ImageView> gameResultCol;
     //------------------------------------------------------------------------
     private final int viewIndex = 5;
 
@@ -50,27 +53,29 @@ public class SavedGamesController implements Initializable {
     ImageView emojon = new ImageView("/resources/emoj8.png");
     ImageView emojoff = new ImageView("/resources/emoj9.png");
 
-    ObservableList<PlayerRow> list3 = FXCollections.observableArrayList(
+    /*ObservableList<PlayerRow> list3 = FXCollections.observableArrayList(
             new PlayerRow("player1", 100, maleon),
             new PlayerRow("player2", 100, emojoff),
             new PlayerRow("player3", 100, maleoff),
             new PlayerRow("player4", 100, emojon)
-    );
+    );*/
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         GameConfig.setCurrentView(viewIndex);
 
-        gameIdCol.setCellValueFactory(new PropertyValueFactory<>("point"));
-        gameResultCol.setCellValueFactory(new PropertyValueFactory<>("photo"));
-        opponentCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        gameIdCol.setCellValueFactory(new PropertyValueFactory<>("GameNumber"));
+        gameResultCol.setCellValueFactory(new PropertyValueFactory<>("PlayerOneName"));
+        opponentCol.setCellValueFactory(new PropertyValueFactory<>("PlayerTwoName"));
+        //savedGamesTable.setItems(list3);
+        EntryPoint.getViewUpdater().setSavedGamesTable(this.savedGamesTable);
+        EntryPoint.getGameClient().getUserGames();
 
-        savedGamesTable.setItems(list3);
-        // TODO
     }
 
     @FXML
     private void handleWatchBtnAction(ActionEvent event) {
+        int gameId = this.savedGamesTable.getSelectionModel().getSelectedItem().getGameNumber();
         SwitchSceneTo.gameBoardScene(event);
     }
 

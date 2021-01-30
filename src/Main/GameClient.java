@@ -179,6 +179,9 @@ public class GameClient {
             Platform.runLater(()->{
                 PopupWindow.display(error);
             });
+        }else if(type.equals("savedGamesList")){
+            JSONArray games = (JSONArray) replyJson.get("games");
+            EntryPoint.getViewUpdater().updateGamesList(games);
         }
     }
 
@@ -265,6 +268,12 @@ public class GameClient {
         this.opponentName = null;
         this.symbol = 0;
         this.myTurn = false;
+    }
+
+    public void getUserGames(){
+        JSONObject sendToServer = new JSONObject();
+        sendToServer.put("type", "getSavedGames");
+        this.ps.println(sendToServer.toJSONString());
     }
 
     public boolean getMyTurn(){

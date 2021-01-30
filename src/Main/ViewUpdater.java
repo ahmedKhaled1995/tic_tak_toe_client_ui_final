@@ -14,6 +14,7 @@ import java.util.Optional;
 public class ViewUpdater {
 
     private TableView<PlayerRow> leaderBoardTable;
+    private TableView<GameRow> savedGamesTable;
     private Button[] buttons;
 
     public void setLeaderBoardTable(TableView<PlayerRow> leaderBoardTable) {
@@ -95,6 +96,27 @@ public class ViewUpdater {
                     this.buttons[index].setText("O");
                 }
             }
+        });
+    }
+
+    public void setSavedGamesTable(TableView<GameRow> savedGamesTable){
+        this.savedGamesTable = savedGamesTable;
+    }
+
+    public void updateGamesList(JSONArray games){
+        Platform.runLater(()->{
+            ObservableList<GameRow> gameList = FXCollections.observableArrayList();
+            for (Object gameObject : games){
+                JSONObject game = (JSONObject) gameObject;
+                gameList.add(
+                        new GameRow(
+                                Integer.parseInt(game.get("id").toString()),
+                                game.get("playerOne").toString(),
+                                game.get("playerTwo").toString()
+                        )
+                );
+            }
+            this.savedGamesTable.setItems(gameList);
         });
     }
 }

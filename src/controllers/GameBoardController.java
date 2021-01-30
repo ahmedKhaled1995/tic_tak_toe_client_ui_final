@@ -35,12 +35,6 @@ import javafx.scene.layout.Pane;
 public class GameBoardController implements Initializable {
 
     @FXML
-    private Pane xplayerpane;
-    @FXML
-    private ImageView xplayerimage;
-    @FXML
-    private Pane xpane;
-    @FXML
     private Button zone1;
     @FXML
     private Button zone2;
@@ -57,27 +51,7 @@ public class GameBoardController implements Initializable {
     @FXML
     private Button zone9;
     @FXML
-    private Pane opane;
-    @FXML
     private Button zone3;
-    @FXML
-    private Pane oplayerpane;
-    @FXML
-    private ImageView oplayerimage;
-    @FXML
-    private Label yourscore;
-    @FXML
-    private Label opponentscore;
-    @FXML
-    private Button newGameBtn;
-    @FXML
-    private Button mainMenuBtn;
-    @FXML
-    private Button exit;
-    @FXML
-    private Label playerScoreLabel;
-    @FXML
-    private Label opponentScoreLabel;
 
     private Button ticTacToeButtons[][];
     private int wins, losses, ties, numOfGames, turn; //first turn x ,2nd turn O o gets 4 turns
@@ -108,26 +82,20 @@ public class GameBoardController implements Initializable {
             ticTacToeButtons[2][0] = zone7;
             ticTacToeButtons[2][1] = zone8;
             ticTacToeButtons[2][2] = zone9;
-            setData();
+            //setData();
             resetGame();
-        /*for(int c = 0; c < 3; c++){
-            for(int r =0; r < 3; r++){
-                ticTacToeButtons[c][r] = new Button("");
-                ticTacToeButtons[c][r].setFont(new Font(36));
-            }
-        }*/
         }
 
     }
 
-    private void setData() {
-        //TODO READ FILE
-        //IF fILE CAN'T be read set data
-        wins = 0;
-        losses = 0;
-        ties = 0;
-        numOfGames = 0;
-    }
+//    private void setData() {
+//        //TODO READ FILE
+//        //IF fILE CAN'T be read set data
+//        wins = 0;
+//        losses = 0;
+//        ties = 0;
+//        numOfGames = 0;
+//    }
 
     private void resetGame() {
         for (int c = 0; c < 3; c++) {
@@ -207,11 +175,6 @@ public class GameBoardController implements Initializable {
     //5thturn check for a winner
 
     private boolean checkIfWon(String player) {
-        //Todo Check ticTacToeButtons
-        //check all rows horizontallly
-        //check all columns vertically
-        //check diagonally -> 2 diagonals 00 11 22, 02,11,20
-        //check diagonally both ways
         if (player.equals(ticTacToeButtons[0][0].getText())
                 && player.equals(ticTacToeButtons[1][1].getText())
                 && player.equals(ticTacToeButtons[2][2].getText())) {
@@ -276,8 +239,12 @@ public class GameBoardController implements Initializable {
                 System.out.println(this.buttons[0].getId());
                 System.out.println(EntryPoint.getGameClient().getSymbol());
             }
-        }else if(GameConfig.getGameMode() == 1){
-            doButtonAction(event);
+        }else if(GameConfig.getGameMode() == 1){  //GameConfig.getGameDiffficultyLevel()==1(easy), 2(medium), 3(hard)
+            if(GameConfig.getGameDiffficultyLevel() == 1){
+                doButtonAction(event);
+            }else{
+
+            }
         }
 
     }
