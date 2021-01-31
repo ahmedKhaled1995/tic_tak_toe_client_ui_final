@@ -9,10 +9,15 @@ import Main.EntryPoint;
 import Main.Resource;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +31,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
+import popups.ConfirmBox;
 import popups.LoserPopUp;
 import popups.TiePopUp;
 import popups.WinnerPopup;
@@ -133,6 +140,10 @@ public class BoardController implements Initializable {
         System.out.println("Difficulty: " + GameConfig.getGameDiffficultyLevel());
         System.out.println("Current View: " + GameConfig.getCurrentView());
         if(GameConfig.getGameMode() == 2){  // Multiplayer
+            boolean answer = ConfirmBox.display("Save Game?");
+            if(answer){
+                EntryPoint.getGameClient().sendAcceptSaveGame();
+            }
             buttons = new Button[]{zone1, zone2, zone3, zone4, zone5, zone6, zone7, zone8, zone9};
             EntryPoint.getViewUpdater().setBoardButtons(buttons);
             this.userName.setText(EntryPoint.getGameClient().getUserName());
@@ -159,6 +170,36 @@ public class BoardController implements Initializable {
             ticTacToeButtons[2][1] = zone8;
             ticTacToeButtons[2][2] = zone9;
             resetGame();
+        }else{     // Re-play mode (0)
+            this.buttons = new Button[]{zone1, zone2, zone3, zone4, zone5, zone6, zone7, zone8, zone9};
+            mainmeu.setDisable(true);
+            newgame.setDisable(true);
+            newgame.setVisible(false);
+            String playerOneName = EntryPoint.getViewUpdater().getReplayPlayerOneName();
+            String playerTwoName = EntryPoint.getViewUpdater().getReplayPlayerTwoName();
+            this.userName.setText(playerOneName);
+            this.opponentName.setText(playerTwoName);
+            HashMap<Integer, String> board = EntryPoint.getViewUpdater().getButtonsMap();
+            Timeline timeline = new Timeline();
+            int i = 0;
+            for (Map.Entry<Integer,String> entry : board.entrySet()) {
+                timeline.getKeyFrames().add(
+                        new KeyFrame(Duration.millis((i+1)*1000),
+                                e -> this.buttons[entry.getKey()].setText(entry.getValue())
+                        )
+                );
+                i++;
+            }
+            timeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis((i+1)*1000), (e) -> {
+                        System.out.println("Display popup here");
+                        mainmeu.setDisable(false);
+                    })
+            );
+            Platform.runLater(()->{
+                timeline.play();
+            });
+
         }
 
     }
@@ -332,7 +373,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void mainmenuHandle(ActionEvent event) {
-        if(GameConfig.getGameMode() == 1){ // Single player
+        if(GameConfig.getGameMode() == 1 || GameConfig.getGameMode() == 0){ // Single player or Re=play
             SwitchSceneTo.showScene(1);
         }
         //System.out.println("back to mainmenu");
@@ -343,6 +384,7 @@ public class BoardController implements Initializable {
         if(GameConfig.getGameMode() == 1){ // Single player
             resetGame();
         }
+
         //System.out.println("start new game");
     }
 

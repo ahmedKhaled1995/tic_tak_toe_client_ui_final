@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import Main.EntryPoint;
+import Main.GameClient;
 import Main.GameRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,7 +77,8 @@ public class SavedGamesController implements Initializable {
     @FXML
     private void handleWatchBtnAction(ActionEvent event) {
         int gameId = this.savedGamesTable.getSelectionModel().getSelectedItem().getGameNumber();
-        SwitchSceneTo.gameBoardScene(event);
+        EntryPoint.getGameClient().getSavedGame(gameId);
+        //SwitchSceneTo.gameBoardScene(event);
     }
 
     @FXML

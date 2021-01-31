@@ -8,7 +8,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import util.GameConfig;
+import util.SwitchSceneTo;
 
+import java.util.LinkedHashMap;
 import java.util.Optional;
 
 public class ViewUpdater {
@@ -16,6 +21,11 @@ public class ViewUpdater {
     private TableView<PlayerRow> leaderBoardTable;
     private TableView<GameRow> savedGamesTable;
     private Button[] buttons;
+
+    private String replayPlayerOneName;
+    private String replayPlayerTwoName;
+    // Note we use a LinkedHashMap not a regular map because order matters here
+    private LinkedHashMap<Integer, String> buttonsMap;
 
     public void setLeaderBoardTable(TableView<PlayerRow> leaderBoardTable) {
         this.leaderBoardTable = leaderBoardTable;
@@ -118,5 +128,52 @@ public class ViewUpdater {
             }
             this.savedGamesTable.setItems(gameList);
         });
+    }
+
+    public void showSavedGame(String replayPlayerOneName, String replayPlayerTwoName,
+                              JSONObject board, JSONObject state){
+        this.replayPlayerOneName = replayPlayerOneName;
+        this.replayPlayerTwoName = replayPlayerTwoName;
+        this.buttonsMap = new LinkedHashMap<>();
+        for (Object keyObj : board.keySet()) {
+            String key = (String) keyObj;
+            JSONObject coordinate = parseStringToJsonObject(board.get(key).toString());
+            for(Object indexObj : coordinate.keySet()){
+                String indexStr = indexObj.toString();
+                int index = Integer.parseInt(indexStr);
+                int symbol = Integer.parseInt(coordinate.get(indexStr).toString());
+                String symbolStr = null;
+                if(symbol == 1){
+                    symbolStr = "X";
+                }else{
+                    symbolStr = "O";
+                }
+                this.buttonsMap.put(index, symbolStr);
+            }
+        }
+        GameConfig.setGameMode(0);
+        Platform.runLater(()->SwitchSceneTo.showScene(5));
+    }
+
+    public String getReplayPlayerOneName(){
+        return this.replayPlayerOneName;
+    }
+
+    public String getReplayPlayerTwoName(){
+        return this.replayPlayerTwoName;
+    }
+
+    public LinkedHashMap<Integer, String> getButtonsMap(){
+        return this.buttonsMap;
+    }
+
+    private JSONObject parseStringToJsonObject(String jsonString){
+        JSONParser parser = new JSONParser();
+        try {
+            return (JSONObject) parser.parse(jsonString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

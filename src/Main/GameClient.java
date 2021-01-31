@@ -182,6 +182,12 @@ public class GameClient {
         }else if(type.equals("savedGamesList")){
             JSONArray games = (JSONArray) replyJson.get("games");
             EntryPoint.getViewUpdater().updateGamesList(games);
+        }else if(type.equals("savedGame")){
+            String playerOneName = replyJson.get("playerOneName").toString();
+            String playerTwoName = replyJson.get("playerTwoName").toString();
+            JSONObject board = parseStringToJsonObject(replyJson.get("board").toString());
+            JSONObject state = parseStringToJsonObject(replyJson.get("state").toString());
+            EntryPoint.getViewUpdater().showSavedGame(playerOneName, playerTwoName, board, state);
         }
     }
 
@@ -276,6 +282,20 @@ public class GameClient {
         this.ps.println(sendToServer.toJSONString());
     }
 
+    public void getSavedGame(int gameId){
+        JSONObject sendToServer = new JSONObject();
+        sendToServer.put("type", "getSavedGame");
+        sendToServer.put("savedGameId", gameId);
+        this.ps.println(sendToServer.toJSONString());
+    }
+
+    public void sendAcceptSaveGame(){
+        JSONObject sendToServer = new JSONObject();
+        sendToServer.put("type", "saveGame");
+        sendToServer.put("gameId", this.gameId);
+        this.ps.println(sendToServer.toJSONString());
+    }
+
     public boolean getMyTurn(){
         return this.myTurn;
     }
@@ -313,7 +333,6 @@ public class GameClient {
     }
 
     private JSONObject parseStringToJsonObject(String jsonString){
-        //System.out.println(jsonString);
         JSONParser parser = new JSONParser();
         try {
             return (JSONObject) parser.parse(jsonString);
