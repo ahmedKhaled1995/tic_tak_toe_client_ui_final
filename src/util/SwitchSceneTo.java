@@ -18,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import Main.EntryPoint;
+import javafx.stage.StageStyle;
 
 /**
  *

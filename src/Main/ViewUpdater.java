@@ -45,8 +45,8 @@ public class ViewUpdater {
                 }else{
                     image = Resource.getEmojOff();
                 }
-                usersList.add(new PlayerRow(player.get("userName").toString(),
-                        Integer.parseInt(player.get("score").toString()), image));
+                int score = Integer.parseInt(player.get("score").toString());
+                usersList.add(new PlayerRow(player.get("userName").toString(), score, image, this.getRank(score)));
             }
             this.leaderBoardTable.setItems(usersList);
         });
@@ -72,7 +72,7 @@ public class ViewUpdater {
 
     public void updateSignedUpUser(String userName){
         if(this.leaderBoardTable != null){
-            this.leaderBoardTable.getItems().add(new PlayerRow(userName, 0, Resource.getEmojOn()));
+            this.leaderBoardTable.getItems().add(new PlayerRow(userName, 0, Resource.getEmojOn(), "Novice"));
         }
     }
 
@@ -165,6 +165,18 @@ public class ViewUpdater {
 
     public LinkedHashMap<Integer, String> getButtonsMap(){
         return this.buttonsMap;
+    }
+
+    private String getRank(int score){
+        String rank = "";
+        if(score < 30){
+            rank = "Novice";
+        }else if(score < 70){
+            rank = "Expert";
+        }else{
+            rank = "Master";
+        }
+        return rank;
     }
 
     private JSONObject parseStringToJsonObject(String jsonString){

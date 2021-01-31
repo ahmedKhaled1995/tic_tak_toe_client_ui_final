@@ -29,7 +29,6 @@ public class EntryPoint extends Application {
         EntryPoint.stage = stage;
         // To ensure program terminates when exit icon (x) is pressed
         EntryPoint.stage.setOnCloseRequest((e)-> {
-            System.out.println("Foo");
             System.exit(0);
         });
         viewUpdater = new ViewUpdater();
@@ -41,10 +40,6 @@ public class EntryPoint extends Application {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
         stage.setResizable(false);
-        stage.setOnCloseRequest((event) -> {
-            System.out.println("end");
-            //Database.DbConnection.endConnection();
-        });
     }
 
     /**

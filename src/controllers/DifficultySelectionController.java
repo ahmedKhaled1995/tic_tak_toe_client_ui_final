@@ -14,10 +14,7 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
@@ -55,6 +52,8 @@ public class DifficultySelectionController implements Initializable {
     private TextField userNameLabel;
     @FXML
     private TextField scoreLabel;
+    @FXML
+    private Button intermediateBtn;
 
     //--------------------------------------------------------------------------
     private final int gameMode = 1;
@@ -65,6 +64,8 @@ public class DifficultySelectionController implements Initializable {
         GameConfig.setGameMode(gameMode);
         GameConfig.setCurrentView(viewIndex);
         animateScreen();
+        this.intermediateBtn.setDisable(true);
+        this.intermediateBtn.setVisible(false);
         //userNameLabel.setText(DummyPlayer.getUserName());
         //scoreLabel.setText(Integer.toString(DummyPlayer.getScore()));
     }

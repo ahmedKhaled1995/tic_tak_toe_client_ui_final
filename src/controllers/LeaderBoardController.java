@@ -41,21 +41,13 @@ public class LeaderBoardController implements Initializable {
     private TableColumn<PlayerRow, Integer> pointsCol;
     @FXML
     private TableColumn<PlayerRow, ImageView> statusCol;
+    @FXML
+    private TableColumn<PlayerRow, ImageView> rankCol;
 
     //-------------------------------------------------------------------------
-    private TableColumn<PlayerRow, String> playernamecol;
-    private TableColumn<PlayerRow, Integer> pointcolumn;
-    private TableColumn<PlayerRow, ImageView> statuscol;
 
     private final int gameMode = 2;
     private final int viewIndex = 4;
-
-    //ImageView maleon = new ImageView(new Image("maleoff.png"));
-    ImageView iconon = new ImageView("/resources/icons8.png");
-    ImageView maleoff = new ImageView("/resources/maleoff.png");
-    ImageView maleon = new ImageView("/resources/maleon.png");
-    ImageView emojon = new ImageView("/resources/emoj8.png");
-    ImageView emojoff = new ImageView("/resources/emoj9.png");
 
 
     @Override
@@ -63,6 +55,7 @@ public class LeaderBoardController implements Initializable {
         playerNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         pointsCol.setCellValueFactory(new PropertyValueFactory<>("point"));
         statusCol.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        rankCol.setCellValueFactory(new PropertyValueFactory<>("rank"));
         //leaderBoardTable.setItems(list3);
         EntryPoint.getViewUpdater().setLeaderBoardTable(this.leaderBoardTable);
         EntryPoint.getGameClient().requestUsers();

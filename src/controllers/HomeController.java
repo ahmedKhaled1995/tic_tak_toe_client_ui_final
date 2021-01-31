@@ -65,6 +65,7 @@ public class HomeController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println(GameConfig.getGameMode());
         animateScreen();
         GameConfig.setCurrentView(viewIndex);
         GameConfig.setGameMode(gameMode);
@@ -105,7 +106,8 @@ public class HomeController implements Initializable {
     @FXML
     private void logOutClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
-            SwitchSceneTo.logInScene(event);
+            //SwitchSceneTo.logInScene(event);
+            SwitchSceneTo.showScene(0);
         }
 
     }

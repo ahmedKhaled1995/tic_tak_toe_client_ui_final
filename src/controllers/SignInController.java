@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
+import popups.PopupWindow;
 import util.GameConfig;
 import Main.EntryPoint;
 
@@ -38,7 +39,19 @@ public class SignInController implements Initializable {
     private void signin(ActionEvent event) {
         String username = emailSignin.getText();
         String password = passSignin.getText();
-        EntryPoint.getGameClient().login(username, password);
+        if(verifyFields()){
+            EntryPoint.getGameClient().login(username, password);
+        }else{
+            PopupWindow.display("Error. Check your credentials!");
+        }
+    }
+
+    private boolean verifyFields(){
+        if(emailSignin.getText().equals("") || passSignin.getText().equals("")){
+            return false;
+        }else{
+            return true;
+        }
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import Main.EntryPoint;
+import javafx.stage.StageStyle;
 import util.GameConfig;
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +42,6 @@ public class LoginMainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
 //      stmt = con.createStatement();
 //      String queryString= new String("select * from players");
 //      ResultSet rs= stmt.executeQuery(queryString);
@@ -54,7 +55,6 @@ public class LoginMainController implements Initializable {
                 fxml = FXMLLoader.load(getClass().getResource("/views/signin.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
-
             } catch (IOException ex) {
 
             }

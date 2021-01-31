@@ -8,13 +8,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class waitingplayerresponseBase extends AnchorPane {
+public class WaitingplayerresponseBase extends AnchorPane {
 
     protected final Pane pane;
     protected final ImageView imageView;
@@ -24,7 +22,7 @@ public class waitingplayerresponseBase extends AnchorPane {
     protected final Button button;
     protected final InnerShadow innerShadow;
 
-    public waitingplayerresponseBase() {
+    public WaitingplayerresponseBase() {
 
         pane = new Pane();
         imageView = new ImageView();
@@ -107,7 +105,7 @@ public class waitingplayerresponseBase extends AnchorPane {
 
     public static void display(){
         Stage window = new Stage();
-        Scene scene = new Scene(new waitingplayerresponseBase());
+        Scene scene = new Scene(new WaitingplayerresponseBase());
         window.setScene(scene);
         window.show();
     }

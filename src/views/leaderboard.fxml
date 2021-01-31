@@ -20,9 +20,10 @@
       </ImageView>
       <TableView id="leaderBoardTable" fx:id="leaderBoardTable" editable="true" layoutY="80.0" prefHeight="410.0" prefWidth="600.0" stylesheets="@../styles/multiplayermode.css">
         <columns>
-          <TableColumn fx:id="playerNameCol" editable="false" prefWidth="283.0" sortable="false" text="players" />
+          <TableColumn fx:id="playerNameCol" editable="false" prefWidth="150.0" sortable="false" text="players" />
           <TableColumn fx:id="pointsCol" prefWidth="176.0" text="points" />
             <TableColumn fx:id="statusCol" prefWidth="136.0" style="-fx-text-alignment: right;" text="status" />
+           <TableColumn fx:id="rankCol"  text="Rank" />
         </columns>
          <effect>
             <Glow level="0.19" />

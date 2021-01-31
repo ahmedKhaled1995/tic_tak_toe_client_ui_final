@@ -16,12 +16,14 @@ public class PlayerRow {
     public ImageView photo;
     int point;
     String name;
+    String rank;
 
-    public PlayerRow(String name, int point, ImageView photo) {
+    public PlayerRow(String name, int point, ImageView photo, String rank) {
 
         this.photo = photo;
         this.name = name;
         this.point = point;
+        this.rank = rank;
 
     }
 
@@ -57,4 +59,11 @@ public class PlayerRow {
 
     }
 
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
 }

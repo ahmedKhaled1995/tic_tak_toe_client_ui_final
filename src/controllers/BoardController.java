@@ -711,7 +711,8 @@ public class BoardController implements Initializable {
 
     @FXML
     void mainmenuHandle(ActionEvent event) {
-        if(GameConfig.getGameMode() == 1 || GameConfig.getGameMode() == 0){ // Single player or Re=play
+        if(GameConfig.getGameMode() == 1 || GameConfig.getGameMode() == 0){ // Single player or Re-play
+            //GameConfig.setGameMode(2);
             SwitchSceneTo.showScene(1);
         }
         //System.out.println("back to mainmenu");

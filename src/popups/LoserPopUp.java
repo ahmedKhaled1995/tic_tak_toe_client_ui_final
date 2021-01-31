@@ -125,6 +125,7 @@ public class LoserPopUp extends AnchorPane {
             }else if(GameConfig.getGameMode() == 2){
                 SwitchSceneTo.showScene(3);
             }
+            window.close();
         });
         button0.setOnAction((e)->{
             SwitchSceneTo.showScene(1);
