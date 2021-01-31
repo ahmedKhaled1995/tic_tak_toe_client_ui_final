@@ -13,6 +13,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class GameRequestPopUp extends AnchorPane {
@@ -100,7 +101,7 @@ public class GameRequestPopUp extends AnchorPane {
         // button ---> accept
         // button0 ---> reject
         Stage window = new Stage();
-
+        window.initModality(Modality.APPLICATION_MODAL);
         button.setOnAction((e)->{
             answer = true;
             window.close();

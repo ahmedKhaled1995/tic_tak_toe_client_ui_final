@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import util.GameConfig;
 import util.SwitchSceneTo;
@@ -128,7 +129,7 @@ public class WinnerPopup extends AnchorPane {
         // button ---> Replay
         // button0 ---> Leave
         Stage window = new Stage();
-
+        window.initModality(Modality.APPLICATION_MODAL);
         button.setOnAction((e)->{
             if(GameConfig.getGameMode() == 1){  // Single player
                 SwitchSceneTo.showScene(5);
