@@ -40,6 +40,7 @@ import popups.LoserPopUp;
 import popups.TiePopUp;
 import popups.WinnerPopup;
 import util.GameConfig;
+import util.GameSound;
 import util.SwitchSceneTo;
 
 /**
@@ -148,7 +149,11 @@ public class BoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         GameConfig.setCurrentView(viewIndex);
+        GameSound.stopMediaPlayer();
+        GameSound.playGameBeginsTrack();
+        
         if(GameConfig.getGameMode() == 2){  // Multiplayer
             /*boolean answer = ConfirmBox.display("Save Game?");
             if(answer){
@@ -712,6 +717,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void mainmenuHandle(ActionEvent event) {
+        GameSound.playClickTrack();
         if(GameConfig.getGameMode() == 1 || GameConfig.getGameMode() == 0){ // Single player or Re-play
             //GameConfig.setGameMode(2);
             SwitchSceneTo.showScene(1);
@@ -721,6 +727,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void newgameHandle(ActionEvent event) {
+        GameSound.playClickTrack();
         if(GameConfig.getGameMode() == 1){ // Single player
             resetGame();
         }else if(GameConfig.getGameMode() == 2){
@@ -749,6 +756,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone1hadle(ActionEvent event) {
+         GameSound.playTileClickTrack();
         if(GameConfig.getGameMode() == 2){
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[0].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[0].getId(),
@@ -768,6 +776,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone2Handle(ActionEvent event) {
+         GameSound.playTileClickTrack();
         if(GameConfig.getGameMode() == 2){
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[1].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[1].getId(),
@@ -785,6 +794,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone3Handle(ActionEvent event) {
+         GameSound.playTileClickTrack();
         if(GameConfig.getGameMode() == 2){
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[2].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[2].getId(),
@@ -802,6 +812,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone4Handle(ActionEvent event) {
+         GameSound.playTileClickTrack();
         if(GameConfig.getGameMode() == 2){
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[3].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[3].getId(),
@@ -819,6 +830,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone5Handle(ActionEvent event) {
+         GameSound.playTileClickTrack();
         if(GameConfig.getGameMode() == 2){
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[4].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[4].getId(),
@@ -836,6 +848,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone6Handle(ActionEvent event) {
+         GameSound.playTileClickTrack();
         if(GameConfig.getGameMode() == 2){
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[5].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[5].getId(),
@@ -853,6 +866,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone7Handle(ActionEvent event) {
+         GameSound.playTileClickTrack();
         if(GameConfig.getGameMode() == 2){
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[6].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[6].getId(),
@@ -870,6 +884,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone8Handle(ActionEvent event) {
+         GameSound.playTileClickTrack();
         if(GameConfig.getGameMode() == 2){
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[7].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[7].getId(),
@@ -887,6 +902,7 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone9Handle(ActionEvent event) {
+         GameSound.playTileClickTrack();
         if(GameConfig.getGameMode() == 2){
             if(EntryPoint.getGameClient().getMyTurn() && this.buttons[8].getText().equals("")){
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[8].getId(),

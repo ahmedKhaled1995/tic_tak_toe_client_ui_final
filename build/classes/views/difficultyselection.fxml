@@ -10,14 +10,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DifficultySelectionController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" stylesheets="@../styles/home.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DifficultySelectionController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/43.png" />
          </image>
       </ImageView>
-      <Button id="btn1" fx:id="easyBtn" layoutX="200.0" layoutY="216.0" mnemonicParsing="false" onAction="#handlEasyBtnAction" prefHeight="60.0" prefWidth="200.0" stylesheets="@../styles/home.css" text="Blind Monkey">
+      <Button id="btn1" fx:id="easyBtn" layoutX="200.0" layoutY="250.0" mnemonicParsing="false" onAction="#handlEasyBtnAction" prefHeight="60.0" prefWidth="200.0" stylesheets="@../styles/home.css" text="Blind Monkey">
          <effect>
             <DropShadow color="#c8f8f0">
                <input>
@@ -26,7 +26,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button id="btn2" fx:id="intermediateBtn" layoutX="200.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleIntermediateBtnAction" prefHeight="60.0" prefWidth="200.0" stylesheets="@../styles/home.css" text="Bring 'em on!">
+      <Button id="btn3" fx:id="hardBtn" layoutX="200.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleHardBtnAction" prefHeight="60.0" prefWidth="200.0" stylesheets="@../styles/home.css" text="Death Wish">
          <effect>
             <Glow level="0.5">
                <input>
@@ -35,16 +35,7 @@
             </Glow>
          </effect>
       </Button>
-      <Button id="btn3" fx:id="hardBtn" layoutX="200.0" layoutY="416.0" mnemonicParsing="false" onAction="#handleHardBtnAction" prefHeight="60.0" prefWidth="200.0" stylesheets="@../styles/home.css" text="Death Wish">
-         <effect>
-            <Glow level="0.5">
-               <input>
-                  <DropShadow color="#c8f8f0" />
-               </input>
-            </Glow>
-         </effect>
-      </Button>
-      <Button id="btn4" fx:id="backBtn" layoutX="200.0" layoutY="516.0" mnemonicParsing="false" onAction="#handlBackBtnAction" prefHeight="60.0" prefWidth="200.0" stylesheets="@../styles/home.css" text="Back">
+      <Button id="btn4" fx:id="backBtn" layoutX="200.0" layoutY="448.0" mnemonicParsing="false" onAction="#handlBackBtnAction" prefHeight="60.0" prefWidth="200.0" stylesheets="@../styles/home.css" text="Back">
          <effect>
             <Glow level="0.75">
                <input>
@@ -150,20 +141,23 @@
       </ImageView>
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="455.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/scorepoints.png" />
+            <Image url="@../resources/images/coinbag.png" />
          </image>
       </ImageView>
       <TextField fx:id="userNameLabel" editable="false" layoutX="70.0" layoutY="65.0" prefHeight="38.0" prefWidth="369.0" stylesheets="@../styles/home.css" text="you " />
       <TextField id="score" fx:id="scoreLabel" editable="false" layoutX="510.0" layoutY="67.0" prefHeight="34.0" prefWidth="85.0" stylesheets="@../styles/home.css" text="score" />
-      <FontAwesomeIconView fx:id="exitGameIcon" fill="#cd71ca" glyphName="CLOSE" layoutX="575.0" layoutY="36.0" onMouseClicked="#exitGameClicked" size="22">
+      <FontAwesomeIconView fx:id="exitGameIcon" styleClass="icon" fill="#cd71ca" glyphName="CLOSE" layoutX="575.0" layoutY="36.0" onMouseClicked="#exitGameClicked" size="22">
          <effect>
             <Glow level="0.5" />
          </effect>
       </FontAwesomeIconView>
-      <FontAwesomeIconView fx:id="logOutIcon" fill="#cd71ca" glyphName="KEY" layoutX="530.0" layoutY="38.0" onMouseClicked="#logOutClicked" size="22">
-         <effect>
+        <ImageView fx:id="logOutIcon" fitHeight="22.0" styleClass="icon" fitWidth="22.0" layoutX="542.0" layoutY="17.0" onMouseClicked="#logOutClicked">
+         <image>
+            <Image url="@../resources/images/logout.png" />
+         </image>
+           <effect>
             <Glow level="0.5" />
          </effect>
-      </FontAwesomeIconView>
+      </ImageView>
    </children>
 </AnchorPane>

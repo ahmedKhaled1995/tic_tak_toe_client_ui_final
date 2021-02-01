@@ -1,6 +1,6 @@
 .button
 {
-
+-fx-cursor: hand;
     -fx-font-weight: bold;
     -fx-border-width: 3;
     -fx-display-caret:true;
@@ -18,6 +18,7 @@
 
 }
 .button:hover {
+    -fx-cursor: hand;
     -fx-background-color:#e22020;    
     -fx-text-fill:  #9bf1f1;
     -fx-border-color : #9bf1f1;
@@ -31,6 +32,7 @@
 
 }
 #btn1{
+    -fx-cursor: hand;
     -fx-text-fill:  #9bf1f1;
     -fx-background-color:transparent;    
     -fx-border-color :
@@ -40,23 +42,39 @@
 
 }
 #btn2{
+    -fx-cursor: hand;
     -fx-text-fill:  #9bf1f1;
     -fx-border-color : linear-gradient(#c792b5 10%, #ff5cfb 40%, #88bbda 100%, #c792b5 70%);
 
     -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
 }
 #btn3{
+    -fx-cursor: hand;
     -fx-text-fill:  #9bf1f1;
     -fx-border-color :linear-gradient(#88bbda 10%, #EF3F7D 20%, #ade2e9 100%, #c792b5 80%);
     -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
 }
 #btn4{
+    -fx-cursor: hand;
     -fx-text-fill:  #9bf1f1;
     -fx-border-color : linear-gradient(#c792b5 10%, #ade2e9 20%, #EF3F7D 80%, #88bbda 100%);
-
     -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
 }
 #btn1:hover{
+    -fx-cursor: hand;
+    -fx-background-color: rgb(203, 220, 238);
+    -fx-text-fill:  #9bf1f1;
+    -fx-border-color : #9bf1f1;
+    -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
+    -fx-background-color:transparent; 
+    -fx-border-width: 4;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;   
+}
+
+#btn1:hover .homeicone
+{
+    -fx-cursor: hand;
     -fx-background-color: rgb(203, 220, 238);
     -fx-text-fill:  #9bf1f1;
     -fx-border-color : #9bf1f1;
@@ -65,9 +83,10 @@
     -fx-border-width: 4;
 
     -fx-font-weight: bold;
-    -fx-font-size: 20;   
+    -fx-font-size: 20; 
 }
 #btn2:hover{
+    -fx-cursor: hand;
     -fx-background-color: rgb(203, 220, 238);
     -fx-text-fill:  #9bf1f1;
     -fx-border-color : #9bf1f1;
@@ -77,8 +96,22 @@
 
     -fx-font-weight: bold;
     -fx-font-size: 20;   
+}
+#btn2:hover .homeicone
+{
+    -fx-cursor: hand;
+    -fx-background-color: rgb(203, 220, 238);
+    -fx-text-fill:  #9bf1f1;
+    -fx-border-color : #9bf1f1;
+    -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
+    -fx-background-color:transparent; 
+    -fx-border-width: 4;
+
+    -fx-font-weight: bold;
+    -fx-font-size: 20; 
 }
 #btn3:hover{
+    -fx-cursor: hand;
     -fx-background-color: rgb(203, 220, 238);
     -fx-text-fill:  #9bf1f1;
     -fx-border-color : #9bf1f1;
@@ -88,8 +121,22 @@
 
     -fx-font-weight: bold;
     -fx-font-size: 20;   
+}
+#btn3:hover .homeicone
+{
+    -fx-cursor: hand;
+    -fx-background-color: rgb(203, 220, 238);
+    -fx-text-fill:  #9bf1f1;
+    -fx-border-color : #9bf1f1;
+    -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
+    -fx-background-color:transparent; 
+    -fx-border-width: 4;
+
+    -fx-font-weight: bold;
+    -fx-font-size: 20; 
 }
 #btn4:hover{
+    -fx-cursor: hand;
     -fx-background-color: rgb(203, 220, 238);
     -fx-text-fill:  #9bf1f1;
     -fx-border-color : #9bf1f1;
@@ -100,7 +147,19 @@
     -fx-font-weight: bold;
     -fx-font-size: 20;   
 }
+#btn4:hover .homeicone
+{
+    -fx-cursor: hand;
+    -fx-background-color: rgb(203, 220, 238);
+    -fx-text-fill:  #9bf1f1;
+    -fx-border-color : #9bf1f1;
+    -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
+    -fx-background-color:transparent; 
+    -fx-border-width: 4;
 
+    -fx-font-weight: bold;
+    -fx-font-size: 20; 
+}
 
 
 #invitebtn{
@@ -168,4 +227,18 @@
 
     -fx-font-size: 20;
     -fx-font-family:Algerian;
+}
+
+.icon{
+    -fx-cursor: hand;
+}
+
+.icon:hover{
+    -fx-cursor: hand;
+    -fx-text-fill:  #9bf1f1;
+    -fx-border-color : #9bf1f1;
+    -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
+    -fx-background-color:transparent; 
+    -fx-border-width: 4;
+    -fx-font-weight: bold;
 }

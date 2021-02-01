@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import popups.ExitGamePopup;
 import util.GameConfig;
 import util.SwitchSceneTo;
+import util.GameSound;
 
 /**
  * FXML Controller class
@@ -32,16 +33,21 @@ public class AboutController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         GameConfig.setCurrentView(viewIndex);
+          GameSound.stopMediaPlayer();
+        GameSound.playAboutTrack();
     }
 
     @FXML
     private void handleBackBtnAction(ActionEvent event) {
+       GameSound.playClickTrack();
+        GameSound.getAudioClip().stop();
         SwitchSceneTo.homeScene(event);
     }
 
     @FXML
     private void exitGameClicked(MouseEvent event) {
-       Platform.runLater(()->{
+        GameSound.playClickTrack();
+        Platform.runLater(()->{
            
                 ExitGamePopup ExitGamePopup = new ExitGamePopup();
                 ExitGamePopup.display();

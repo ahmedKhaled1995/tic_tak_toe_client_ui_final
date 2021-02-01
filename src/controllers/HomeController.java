@@ -26,7 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import util.GameConfig;
 import popups.ExitGamePopup;
-
+import util.GameSound;
 /**
  * FXML Controller class
  *
@@ -69,6 +69,7 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println(GameConfig.getGameMode());
         animateScreen();
+        GameSound.playMainMenuTrack();
         GameConfig.setCurrentView(viewIndex);
         GameConfig.setGameMode(gameMode);
         userNameLabel.setText(EntryPoint.getGameClient().getUserName());
@@ -77,26 +78,31 @@ public class HomeController implements Initializable {
 
     @FXML
     private void handleVsComputerBtnAction(ActionEvent event) {
+        GameSound.playClickTrack();
         SwitchSceneTo.difficultySelectionScene(event);
     }
 
     @FXML
     private void handleVsPlayerBtnAction(ActionEvent event) {
+        GameSound.playClickTrack();
         SwitchSceneTo.leaderBoardScene(event);
     }
 
     @FXML
     private void handleSavedGamesBtnAction(ActionEvent event) {
+        GameSound.playClickTrack();
         SwitchSceneTo.savedGamesScene(event);
     }
 
     @FXML
     private void handleAboutBtnAction(ActionEvent event) {
+        GameSound.playClickTrack();
         SwitchSceneTo.aboutScene(event);
     }
 
     @FXML
     private void exitGameClicked(MouseEvent event) {
+        GameSound.playClickTrack();
         if (event.getButton() == MouseButton.PRIMARY) {
              Platform.runLater(()->{
            
@@ -112,6 +118,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void logOutClicked(MouseEvent event) {
+       GameSound.playClickTrack();
         if (event.getButton() == MouseButton.PRIMARY) {
             //SwitchSceneTo.logInScene(event);
             EntryPoint.getGameClient().logOut();

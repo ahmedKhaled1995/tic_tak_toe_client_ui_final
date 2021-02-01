@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@../styles/about.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AboutController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="600.0" fitWidth="600.0"  pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/43.png" />
          </image>
@@ -40,6 +40,6 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <FontAwesomeIconView fx:id="exitGameIcon" fill="#cd71ca" glyphName="CLOSE" layoutX="570.0" layoutY="25.0" onMouseClicked="#exitGameClicked" size="22" />
+      <FontAwesomeIconView fx:id="exitGameIcon" styleClass="icon"  fill="#cd71ca" glyphName="CLOSE" layoutX="570.0" layoutY="25.0" onMouseClicked="#exitGameClicked" size="22" />
    </children>
 </AnchorPane>
