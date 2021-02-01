@@ -23,6 +23,7 @@ and open the template in the editor.
     -fx-background-color: transparent;
 }
 .signupbuutton{
+    -fx-cursor: hand;
     -fx-background-color: transparent;
     -fx-background-radius: 5px;
     -fx-border-color: #cccccc;
@@ -38,7 +39,17 @@ and open the template in the editor.
     /* blur size and spread size are optional (they default to 0) */
 }
 
+.signupbuutton:hover{
+    -fx-cursor: hand;
+    -fx-text-fill:  #9bf1f1;
+    -fx-border-color : #9bf1f1;
+    -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
+    -fx-background-color:transparent; 
+    -fx-border-width: 4;
+    -fx-font-weight: bold;
+}
 .cancelbuutton{
+    -fx-cursor: hand;
     -fx-background-color: transparent;
     -fx-background-radius: 5px;
     -fx-border-color: #cccccc;
@@ -53,6 +64,16 @@ and open the template in the editor.
     /* in order: x offset, y offset, blur size, spread size, color */
     /* blur size and spread size are optional (they default to 0) */
 }
+.cancelbuutton:hover{
+    -fx-cursor: hand;
+    -fx-text-fill:  #9bf1f1;
+    -fx-border-color : #9bf1f1;
+    -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
+    -fx-background-color:transparent; 
+    -fx-border-width: 4;
+    -fx-font-weight: bold;
+}
+
 .white-pane{
     -fx-background-image: url('../resources/images/border1.png');
     -fx-background-size: 100% 100%;
@@ -102,36 +123,44 @@ and open the template in the editor.
     -fx-font-weight: bold;
 }
 .blue-btn{
-
+    -fx-cursor: hand;
     -fx-effect: dropshadow(three-pass-box,#bef9fa, 15, 0, 0, 0);
     -fx-background-color: #0c3e57;
     /*    -fx-background-image: url('/images/blue-bricks.jpeg');*/
     -fx-background-radius: 5px;
     -fx-text-fill: #ffffff;
 
+}
+.blue-btn:hover{
+    -fx-cursor: hand;
+    -fx-text-fill:  #9bf1f1;
+    -fx-border-color : #9bf1f1;
+    -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
+    -fx-background-color:transparent; 
+    -fx-border-width: 4;
+    -fx-font-weight: bold;
+}
+.icon{
+    -fx-cursor: hand;
+}
 
+.icon:hover{
+    -fx-cursor: hand;
+    -fx-text-fill:  #9bf1f1;
+    -fx-border-color : #9bf1f1;
+    -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
+    -fx-background-color:transparent; 
+    -fx-border-width: 4;
+    -fx-font-weight: bold;
+}
+#headertxt{
+    -fx-fill:linear-gradient(#c792b5 0%,yellow 6%, #ade2e9 40%, #ff5cfb 100%, #88bbda 70%);
 
 }
-#username{
-    /*    -fx-text-fill:red;*/
-    /*     -fx-effect: innershadow(three-pass-box,#f24da6, 10, 0, 0, 0);*/
-    /*     -fx-stroke: blue;
-        -fx-stroke-width: 3;
-        -fx-stroke-type:inside;
-    */
-    /*     -fx-font-size: 32px;
-       -fx-font-family: "Arial Black";
-       -fx-fill: white;
-       -fx-effect: innershadow( three-pass-box , #bef9fa , 6, 0.0 , 0 , 2 );*/
-    /*    -fx-background-color: transparent;
-        -fx-background-radius: 5px;*/
-    /*    -fx-fill: transparent ;
-        -fx-font-weight:bold;
-        -fx-font-size:50px;
-       
-    /*    -fx-border-radius: 5px;*/
-    /*    -fx-border-width: 3px;*/
-    /*    -fx-text-fill: whitesmoke;*/
-    /*    -fx-effect: dropshadow(three-pass-box,black, 20, 0, 0, 0);*/
-    /*   -fx-effect: innershadow(two-pass-box, red, 20, 20, 20, 20);*/
+.exittext{ 
+/*    -fx-stroke: black;
+    -fx-stroke-width: 1px;*/
+    -fx-fill:linear-gradient(#ff82ff 0%,#fffa20 6%, #ff82ff 30%, #fffa20 70%, #ff82ff 73%,#ff82ff 100%);
+    
+   
 }

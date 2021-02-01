@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import popups.ExitGamePopup;
 import util.GameConfig;
 import util.SwitchSceneTo;
 
@@ -64,8 +66,8 @@ public class DifficultySelectionController implements Initializable {
         GameConfig.setGameMode(gameMode);
         GameConfig.setCurrentView(viewIndex);
         animateScreen();
-        this.intermediateBtn.setDisable(true);
-        this.intermediateBtn.setVisible(false);
+//        this.intermediateBtn.setDisable(true);
+//        this.intermediateBtn.setVisible(false);
         //userNameLabel.setText(DummyPlayer.getUserName());
         //scoreLabel.setText(Integer.toString(DummyPlayer.getScore()));
     }
@@ -97,11 +99,16 @@ public class DifficultySelectionController implements Initializable {
     @FXML
     private void exitGameClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
-            System.out.println("exit Button Working");
-            if (exitApplication() == true) {
-                //SwitchSceneTo.getStage(event).close();
-                System.exit(0);
-            }
+             Platform.runLater(()->{
+           
+                ExitGamePopup ExitGamePopup = new ExitGamePopup();
+                ExitGamePopup.display();
+            });
+//            System.out.println("exit Button Working");
+//            if (exitApplication() == true) {
+//                //SwitchSceneTo.getStage(event).close();
+//                System.exit(0);
+//            }
         }
     }
 

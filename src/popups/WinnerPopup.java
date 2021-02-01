@@ -8,8 +8,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import util.GameConfig;
 import util.SwitchSceneTo;
 
@@ -130,6 +132,8 @@ public class WinnerPopup extends AnchorPane {
         // button0 ---> Leave
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
+        window.initStyle(StageStyle.TRANSPARENT);
+
         button.setOnAction((e)->{
             if(GameConfig.getGameMode() == 1){  // Single player
                 SwitchSceneTo.showScene(5);
@@ -146,6 +150,7 @@ public class WinnerPopup extends AnchorPane {
 
 
         Scene scene = new Scene(this);
+         scene.setFill(Color.TRANSPARENT);
         window.setScene(scene);
         window.showAndWait();
     }

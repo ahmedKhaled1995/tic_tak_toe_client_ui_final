@@ -15,14 +15,29 @@ and open the template in the editor.
   }
 
   .buttontrans{
+      -fx-cursor: hand;
       -fx-background-color: transparent;
       -fx-text-fill: white;
       -fx-font-size:40;
       -fx-font-weight:bold;
   }
   .buttongame{
+      -fx-cursor: hand;
       -fx-font-family:Algerian;
       -fx-font-size:12;
         -fx-effect: dropshadow(three-pass-box,#0000ff, 10, 0, 0, 0);
       -fx-background-radius: 10px;
   }
+  .icon{
+    -fx-cursor: hand;
+}
+
+.icon:hover{
+    -fx-cursor: hand;
+    -fx-text-fill:  #9bf1f1;
+    -fx-border-color : #9bf1f1;
+    -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
+    -fx-background-color:transparent; 
+    -fx-border-width: 4;
+    -fx-font-weight: bold;
+}

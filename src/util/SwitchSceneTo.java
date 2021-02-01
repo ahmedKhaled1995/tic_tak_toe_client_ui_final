@@ -18,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import Main.EntryPoint;
+import javafx.scene.paint.Color;
 import javafx.stage.StageStyle;
 
 /**
@@ -46,7 +47,13 @@ public class SwitchSceneTo {
         try {
             Parent newView = FXMLLoader.load(SwitchSceneTo.class.getResource("../views/" + viewsList.get(viewIndex) + ".fxml"));
             makeMeMobile(newView);
-            getStage(event).setScene(new Scene(newView));
+            
+            Scene newscene=new Scene(newView);
+            newscene.setFill(Color.TRANSPARENT);
+            getStage(event).setScene(newscene);
+
+
+//            getStage(event).setScene(new Scene(newView));
         } catch (NullPointerException ex) {
             Logger.getLogger(SwitchSceneTo.class.getName()).log(Level.SEVERE, null, ex);
             String errorMessage = "Error: " + viewsList.get(viewIndex) + ".fxml was not found. Reinstalling the application may fix the problem";
@@ -67,7 +74,14 @@ public class SwitchSceneTo {
             Parent newView = FXMLLoader.load(SwitchSceneTo.class.getResource("../views/" + viewsList.get(viewIndex) + ".fxml"));
             makeMeMobile(newView);
             Stage newStage = EntryPoint.getStage();
-            newStage.setScene(new Scene(newView));
+            
+            
+            Scene newscene=new Scene(newView);
+            newscene.setFill(Color.TRANSPARENT);
+            newStage.setScene(newscene);
+            
+            
+//            newStage.setScene(new Scene(newView));
             newStage.show();
         } catch (NullPointerException ex) {
             Logger.getLogger(SwitchSceneTo.class.getName()).log(Level.SEVERE, null, ex);
@@ -111,7 +125,10 @@ public class SwitchSceneTo {
     public static void aboutScene(Event event) {
         showScene(event, 6);
     }
-
+    
+  
+    
+    
     public static void closeCurrentStage(Event event) {
         getStage(event).close();
     }

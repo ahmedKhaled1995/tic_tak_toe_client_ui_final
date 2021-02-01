@@ -2,12 +2,25 @@
  * Empty Stylesheet file.
  */
 
+.icon{
+    -fx-cursor: hand;
+}
+
+.icon:hover{
+    -fx-cursor: hand;
+    -fx-text-fill:  #9bf1f1;
+    -fx-border-color : #9bf1f1;
+    -fx-effect: dropshadow(three-pass-box, #e22020, 10, 0, 0, 0);
+    -fx-background-color:transparent; 
+    -fx-border-width: 4;
+    -fx-font-weight: bold;
+}
 .mainFxmlClass {
 
 }
 .button
 {
-
+    -fx-cursor: hand;
     -fx-font-weight: bold;
     -fx-border-width: 3;
     -fx-display-caret:true;
@@ -24,6 +37,7 @@
 
 }
 .button:hover {
+    -fx-cursor: hand;
     -fx-border-color :  linear-gradient(#c792b5 10%, #ff5cfb 40%, #88bbda 100%, #c792b5 70%);
 
     -fx-text-fill: linear-gradient(#c792b5 0%, #ade2e9 40%, #ff5cfb 100%, #88bbda 70%);
@@ -36,6 +50,7 @@
 
 }
 #directionbtn{
+    -fx-cursor: hand;
     -fx-border-radius:10; 
 }
 

@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class PopupWindow {
 
@@ -16,6 +17,8 @@ public class PopupWindow {
         window.setMinWidth(300);
         window.setMinHeight(120);
         window.initModality(Modality.APPLICATION_MODAL);
+        window.initStyle(StageStyle.TRANSPARENT);
+
         VBox dialogVbox = new VBox(5);
         dialogVbox.setPadding(new Insets(10, 0, 0 ,50));
         HBox buttonHBox = new HBox(5);
@@ -28,6 +31,7 @@ public class PopupWindow {
         dialogVbox.getChildren().addAll(new Text(msg), buttonHBox);
         Scene dialogScene = new Scene(dialogVbox, 250, 100);
         window.setScene(dialogScene);
+        
         window.showAndWait();
         //window.focusedProperty();
     }

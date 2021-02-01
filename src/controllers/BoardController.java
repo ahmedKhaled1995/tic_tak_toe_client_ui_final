@@ -35,6 +35,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import popups.ConfirmBox;
+import popups.ExitGamePopup;
 import popups.LoserPopUp;
 import popups.TiePopUp;
 import popups.WinnerPopup;
@@ -737,7 +738,12 @@ public class BoardController implements Initializable {
 
     @FXML
     void exit(ActionEvent event) {
-        System.exit(0);
+//        System.exit(0);
+            Platform.runLater(()->{
+           
+                ExitGamePopup ExitGamePopup = new ExitGamePopup();
+                ExitGamePopup.display();
+            });
 
     }
 

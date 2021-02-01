@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 
-<AnchorPane fx:id="an" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<AnchorPane fx:id="an" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@../styles/home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -64,11 +64,12 @@
             </Glow>
          </effect>
       </Label>
-      <FontAwesomeIconView fx:id="exitGameIcon" fill="#cd71ca" glyphName="CLOSE" layoutX="577.0" layoutY="26.0" onMouseClicked="#exitGameClicked" size="22">
+      <FontAwesomeIconView fx:id="exitGameIcon" fill="#cd71ca" glyphName="CLOSE" layoutX="577.0" layoutY="26.0" onMouseClicked="#exitGameClicked" size="22" styleClass="icon">
          <effect>
             <Glow level="0.5" />
-         </effect></FontAwesomeIconView>
-      <FontAwesomeIconView glyphName="DESKTOP" layoutX="257.0" layoutY="265.0" size="17">
+         </effect>
+      </FontAwesomeIconView>
+      <FontAwesomeIconView id="desktopIcon" glyphName="DESKTOP" layoutX="255.0" layoutY="259.0" size="17" styleClass="homeicon">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.6142857142857143">
                <stops>
@@ -85,7 +86,7 @@
             </Glow>
          </effect>
       </FontAwesomeIconView>
-      <FontAwesomeIconView glyphName="HISTORY" layoutX="226.0" layoutY="455.0" size="16">
+      <FontAwesomeIconView glyphName="HISTORY" layoutX="221.0" layoutY="455.0" size="16" styleClass="homeicon">
          <fill>
             <LinearGradient endX="0.6523809523809524" endY="1.0" startX="0.20952380952380953">
                <stops>
@@ -103,7 +104,7 @@
             </Glow>
          </effect>
       </FontAwesomeIconView>
-      <FontAwesomeIconView glyphName="USER" layoutX="274.0" layoutY="357.0" size="18">
+      <FontAwesomeIconView glyphName="USER" layoutX="275.0" layoutY="357.0" size="18" styleClass="homeicon">
          <fill>
             <LinearGradient endX="0.6523809523809524" endY="1.0" startX="0.20952380952380953">
                <stops>
@@ -121,7 +122,7 @@
             </Glow>
          </effect>
       </FontAwesomeIconView>
-      <FontAwesomeIconView glyphName="INFO" layoutX="260.0" layoutY="557.0" size="16">
+      <FontAwesomeIconView glyphName="INFO" layoutX="256.0" layoutY="557.0" size="16" styleClass="homeicon">
          <fill>
             <LinearGradient endX="0.6523809523809524" endY="1.0" startX="0.20952380952380953">
                <stops>
@@ -144,14 +145,24 @@
             <Image url="@../resources/icons8user.png" />
          </image>
       </ImageView>
-      <FontAwesomeIconView fx:id="logOutIcon" fill="#cd71ca" glyphName="KEY" layoutX="532.0" layoutY="28.0" onMouseClicked="#logOutClicked" size="22">
+     <!--      <FontAwesomeIconView fx:id="logOutIcon" fill="#cd71ca" glyphName="KEY" layoutX="532.0" layoutY="28.0" onMouseClicked="#logOutClicked" size="22">
          <effect>
             <Glow level="0.5" />
          </effect>
-      </FontAwesomeIconView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="466.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+      </FontAwesomeIconView>-->
+       <ImageView fx:id="logOutIcon" fitHeight="22.0" fitWidth="22.0" layoutX="545.0" layoutY="10.0" onMouseClicked="#logOutClicked" styleClass="icon">
          <image>
-            <Image url="@../resources/scorepoints.png" />
+            <Image url="@../resources/images/logout.png" />
+         </image>
+           <effect>
+            <Glow level="0.5" />
+         </effect>
+      </ImageView>
+      
+      <ImageView fitHeight="60.0" fitWidth="67.0" layoutX="457.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+<!--            <Image url="@../resources/scorepoints.png" />-->
+                <Image url="@../resources/images/coinbag.png" />
          </image>
       </ImageView>
       <TextField fx:id="userNameLabel" editable="false" layoutX="60.0" layoutY="55.0" prefHeight="38.0" prefWidth="402.0" stylesheets="@../styles/home.css" text="you " />

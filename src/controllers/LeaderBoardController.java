@@ -25,6 +25,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import Main.PlayerRow;
+import javafx.application.Platform;
+import popups.ExitGamePopup;
 
 /**
  * FXML Controller class
@@ -78,35 +80,40 @@ public class LeaderBoardController implements Initializable {
 
     @FXML
     private void exitGameClicked(MouseEvent event) {
-        if (event.getButton() == MouseButton.PRIMARY) {
-            if (exitApplication() == true) {
-                //SwitchSceneTo.getStage(event).close();
-                System.exit(0);
-            }
-        }
+//        if (event.getButton() == MouseButton.PRIMARY) {
+//            if (exitApplication() == true) {
+//                //SwitchSceneTo.getStage(event).close();
+//                System.exit(0);
+//            }
+//        }
+            Platform.runLater(()->{
+           
+                ExitGamePopup ExitGamePopup = new ExitGamePopup();
+                ExitGamePopup.display();
+            });
     }
 
-    private boolean exitApplication() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("System Message");
-        alert.setHeaderText("Are you sure that you want to exit?");
-
-        ButtonType yes = new ButtonType("Yes");
-        ButtonType no = new ButtonType("No");
-
-        alert.getButtonTypes().setAll(yes, no);
-
-        Boolean exit = null;
-
-        Optional<ButtonType> playerChoice = alert.showAndWait();
-        if (playerChoice.get() == yes) {
-            exit = true;
-        } else if (playerChoice.get() == no) {
-            exit = false;
-        }
-
-        return exit;
-    }
+//    private boolean exitApplication() {
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//        alert.setTitle("System Message");
+//        alert.setHeaderText("Are you sure that you want to exit?");
+//
+//        ButtonType yes = new ButtonType("Yes");
+//        ButtonType no = new ButtonType("No");
+//
+//        alert.getButtonTypes().setAll(yes, no);
+//
+//        Boolean exit = null;
+//
+//        Optional<ButtonType> playerChoice = alert.showAndWait();
+//        if (playerChoice.get() == yes) {
+//            exit = true;
+//        } else if (playerChoice.get() == no) {
+//            exit = false;
+//        }
+//
+//        return exit;
+//    }
 
     /*
     public void addUsers() {

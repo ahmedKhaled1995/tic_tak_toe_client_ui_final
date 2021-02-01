@@ -15,11 +15,11 @@ public class Resource {
     }
 
     public static ImageView getEmojOn(){
-        return new ImageView("/resources/emoj8.png");
+        return new ImageView("/resources/online1.png");
     }
 
     public static ImageView getEmojOff(){
-        return new ImageView("/resources/emoj9.png");
+        return new ImageView("/resources/offline1.png");
     }
 
     public static ImageView getXPic(){

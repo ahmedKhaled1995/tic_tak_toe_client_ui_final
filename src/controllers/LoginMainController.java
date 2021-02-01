@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,8 +27,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import popups.ExitGamePopup;
 
 /**
  *
@@ -95,5 +99,19 @@ public class LoginMainController implements Initializable {
 
             }
         });
+    }
+     @FXML
+        private void exitGameClicked(MouseEvent event) {
+        if (event.getButton() == MouseButton.PRIMARY) {
+             Platform.runLater(()->{
+           
+                ExitGamePopup ExitGamePopup = new ExitGamePopup();
+                ExitGamePopup.display();
+            });
+//            if (exitApplication() == true) {
+//                //SwitchSceneTo.getStage(event).close();
+//                System.exit(0);
+//            }
+        }
     }
 }

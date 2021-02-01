@@ -9,12 +9,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class GameRequestPopUp extends AnchorPane {
 
@@ -102,6 +104,7 @@ public class GameRequestPopUp extends AnchorPane {
         // button0 ---> reject
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
+        window.initStyle(StageStyle.TRANSPARENT);
         button.setOnAction((e)->{
             answer = true;
             window.close();
@@ -114,6 +117,7 @@ public class GameRequestPopUp extends AnchorPane {
 
         text.setText(opponentName + " says:");
         Scene scene = new Scene(this);
+        scene.setFill(Color.TRANSPARENT);
         window.setScene(scene);
         window.showAndWait();
         return answer;

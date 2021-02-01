@@ -11,7 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SavedGamesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../styles/multiplayermode.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SavedGamesController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -49,7 +49,7 @@
                </input>
             </Glow>
          </effect></Button>
-      <FontAwesomeIconView fx:id="exitGameIcon" fill="#cd71ca" glyphName="CLOSE" layoutX="568.0" layoutY="26.0" onMouseClicked="#exitGameClicked" size="22">
+      <FontAwesomeIconView fx:id="exitGameIcon" styleClass="icon"  fill="#cd71ca" glyphName="CLOSE" layoutX="568.0" layoutY="26.0" onMouseClicked="#exitGameClicked" size="22">
          <effect>
             <Glow level="0.5" />
          </effect>

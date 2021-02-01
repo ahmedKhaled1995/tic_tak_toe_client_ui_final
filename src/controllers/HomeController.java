@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,6 +25,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import util.GameConfig;
+import popups.ExitGamePopup;
 
 /**
  * FXML Controller class
@@ -96,10 +98,15 @@ public class HomeController implements Initializable {
     @FXML
     private void exitGameClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
-            if (exitApplication() == true) {
-                //SwitchSceneTo.getStage(event).close();
-                System.exit(0);
-            }
+             Platform.runLater(()->{
+           
+                ExitGamePopup ExitGamePopup = new ExitGamePopup();
+                ExitGamePopup.display();
+            });
+//            if (exitApplication() == true) {
+//                //SwitchSceneTo.getStage(event).close();
+//                System.exit(0);
+//            }
         }
     }
 
@@ -112,27 +119,28 @@ public class HomeController implements Initializable {
 
     }
 
-    private boolean exitApplication() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("System Message");
-        alert.setHeaderText("Are you sure that you want to exit?");
 
-        ButtonType yes = new ButtonType("Yes");
-        ButtonType no = new ButtonType("No");
-
-        alert.getButtonTypes().setAll(yes, no);
-
-        Boolean exit = null;
-
-        Optional<ButtonType> playerChoice = alert.showAndWait();
-        if (playerChoice.get() == yes) {
-            exit = true;
-        } else if (playerChoice.get() == no) {
-            exit = false;
-        }
-
-        return exit;
-    }
+//    private boolean exitApplication() {
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//        alert.setTitle("System Message");
+//        alert.setHeaderText("Are you sure that you want to exit?");
+//
+//        ButtonType yes = new ButtonType("Yes");
+//        ButtonType no = new ButtonType("No");
+//
+//        alert.getButtonTypes().setAll(yes, no);
+//
+//        Boolean exit = null;
+//
+//        Optional<ButtonType> playerChoice = alert.showAndWait();
+//        if (playerChoice.get() == yes) {
+//            exit = true;
+//        } else if (playerChoice.get() == no) {
+//            exit = false;
+//        }
+//
+//        return exit;
+//    }
 
     private void animateScreen() {
         TranslateTransition transition1 = new TranslateTransition();

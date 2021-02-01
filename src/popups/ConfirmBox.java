@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ConfirmBox {
 
@@ -17,6 +18,8 @@ public class ConfirmBox {
         window.setMinWidth(250);
         window.setMinHeight(100);
         window.initModality(Modality.APPLICATION_MODAL);
+        window.initStyle(StageStyle.TRANSPARENT);
+
         //dialog.initOwner(parentStage);
         VBox dialogVbox = new VBox(5);
         HBox yesAndNoButtonsBox = new HBox(5);

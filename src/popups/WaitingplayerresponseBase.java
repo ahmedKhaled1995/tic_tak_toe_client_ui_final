@@ -8,9 +8,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class WaitingplayerresponseBase extends AnchorPane {
 
@@ -105,7 +107,9 @@ public class WaitingplayerresponseBase extends AnchorPane {
 
     public static void display(){
         Stage window = new Stage();
+        window.initStyle(StageStyle.TRANSPARENT);
         Scene scene = new Scene(new WaitingplayerresponseBase());
+        scene.setFill(Color.TRANSPARENT);
         window.setScene(scene);
         window.show();
     }
