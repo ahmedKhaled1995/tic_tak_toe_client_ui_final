@@ -65,9 +65,12 @@ public class SavedGamesController implements Initializable {
 
     @FXML
     private void handleWatchBtnAction(ActionEvent event) {
-        int gameId = this.savedGamesTable.getSelectionModel().getSelectedItem().getGameNumber();
-        EntryPoint.getGameClient().getSavedGame(gameId);
-        GameSound.playTileClickTrack();
+        if(!this.savedGamesTable.getSelectionModel().isEmpty()){
+            int gameId = this.savedGamesTable.getSelectionModel().getSelectedItem().getGameNumber();
+            EntryPoint.getGameClient().getSavedGame(gameId);
+            GameSound.playTileClickTrack();
+        }
+
     }
 
     @FXML

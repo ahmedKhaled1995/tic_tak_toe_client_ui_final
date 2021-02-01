@@ -67,8 +67,11 @@ public class LeaderBoardController implements Initializable {
         //GameConfig.setGameMode(gameMode);
         //SwitchSceneTo.gameBoardScene(event);
         GameSound.playClickTrack();
-        String opponentName = this.leaderBoardTable.getSelectionModel().getSelectedItem().getName();
-        EntryPoint.getGameClient().startGameWithOpponent(opponentName);
+        if(!this.leaderBoardTable.getSelectionModel().isEmpty()){
+            String opponentName = this.leaderBoardTable.getSelectionModel().getSelectedItem().getName();
+            EntryPoint.getGameClient().startGameWithOpponent(opponentName);
+        }
+
     }
 
     @FXML

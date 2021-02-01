@@ -115,12 +115,9 @@ public class HomeController implements Initializable {
 
     @FXML
     private void logOutClicked(MouseEvent event) {
-<<<<<<< HEAD
         GameSound.playClickTrack();
         GameSound.stopMediaPlayer();
-=======
        GameSound.stopMediaPlayer();
->>>>>>> ed487cc74a209d1f2d215d0cacc7356526c1bbe3
         if (event.getButton() == MouseButton.PRIMARY) {
             EntryPoint.getGameClient().logOut();
             SwitchSceneTo.logInScene(event);
