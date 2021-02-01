@@ -102,7 +102,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void exitGameClicked(MouseEvent event) {
-        GameSound.playClickTrack();
+        GameSound.stopMediaPlayer();
         if (event.getButton() == MouseButton.PRIMARY) {
              Platform.runLater(()->{
            
@@ -118,7 +118,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void logOutClicked(MouseEvent event) {
-       GameSound.playClickTrack();
+       GameSound.stopMediaPlayer();
         if (event.getButton() == MouseButton.PRIMARY) {
             //SwitchSceneTo.logInScene(event);
             EntryPoint.getGameClient().logOut();
@@ -126,6 +126,10 @@ public class HomeController implements Initializable {
         }
 
     }
+      @FXML
+        private void mutesound(MouseEvent event) {
+           GameSound.stopMediaPlayer();
+        }
 
 
 //    private boolean exitApplication() {

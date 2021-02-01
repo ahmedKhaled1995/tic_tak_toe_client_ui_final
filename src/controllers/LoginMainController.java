@@ -47,7 +47,6 @@ public class LoginMainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         GameSound.stopMediaPlayer();
 //      stmt = con.createStatement();
 //      String queryString= new String("select * from players");
 //      ResultSet rs= stmt.executeQuery(queryString);
