@@ -1,6 +1,6 @@
 package popups;
 
-import javafx.application.Platform;
+import Main.EntryPoint;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,8 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -41,12 +39,14 @@ public class GameRequestPopUp extends AnchorPane {
         setPrefHeight(300.0);
         setPrefWidth(400.0);
         getStyleClass().add("popupanchor");
-        getStylesheets().add("/popups/../styles/Stye.css");
+        //getStylesheets().add("/popups/../styles/Stye.css");
+        pane.getStylesheets().add(String.valueOf(EntryPoint.class.getResource("/styles/Stye.css")));
 
         pane.setPrefHeight(300.0);
         pane.setPrefWidth(400.0);
         pane.getStyleClass().add("popuppane");
-        pane.getStylesheets().add("/popups/../styles/Stye.css");
+        //pane.getStylesheets().add("/popups/../styles/Stye.css");
+        pane.getStylesheets().add(String.valueOf(EntryPoint.class.getResource("/styles/Stye.css")));
 
         imageView.setFitHeight(161.0);
         imageView.setFitWidth(328.0);
@@ -54,7 +54,8 @@ public class GameRequestPopUp extends AnchorPane {
         imageView.setLayoutY(79.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(getClass().getResource("../resources/images/play.gif").toExternalForm()));
+        //imageView.setImage(new Image(getClass().getResource("../resources/images/play.gif").toExternalForm()));
+        imageView.setImage(new Image(EntryPoint.class.getResource("/resources/images/play.gif").toExternalForm()));
 
         text.setLayoutX(15.0);
         text.setLayoutY(77.0);

@@ -45,7 +45,9 @@ public class SwitchSceneTo {
 
     public static void showScene(Event event, int viewIndex) {
         try {
-            Parent newView = FXMLLoader.load(SwitchSceneTo.class.getResource("../views/" + viewsList.get(viewIndex) + ".fxml"));
+            //Parent newView = FXMLLoader.load(SwitchSceneTo.class.getResource("../views/" + viewsList.get(viewIndex) + ".fxml"));
+            Parent newView = FXMLLoader.load(
+                    EntryPoint.class.getResource("/views/" + viewsList.get(viewIndex) + ".fxml"));
             makeMeMobile(newView);
             
             Scene newscene=new Scene(newView);
@@ -71,7 +73,9 @@ public class SwitchSceneTo {
 
     public static void showScene(int viewIndex) {
         try {
-            Parent newView = FXMLLoader.load(SwitchSceneTo.class.getResource("../views/" + viewsList.get(viewIndex) + ".fxml"));
+            //Parent newView = FXMLLoader.load(SwitchSceneTo.class.getResource("../views/" + viewsList.get(viewIndex) + ".fxml"));
+            Parent newView = FXMLLoader.load(
+                    EntryPoint.class.getResource("/views/" + viewsList.get(viewIndex) + ".fxml"));
             makeMeMobile(newView);
             Stage newStage = EntryPoint.getStage();
             

@@ -1,5 +1,6 @@
 package popups;
 
+import Main.EntryPoint;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -39,12 +40,14 @@ public class TiePopUp extends AnchorPane {
         setPrefHeight(300.0);
         setPrefWidth(400.0);
         getStyleClass().add("popupanchor");
-        getStylesheets().add("/popups/../styles/Stye.css");
+        //getStylesheets().add("/popups/../styles/Stye.css");
+        pane.getStylesheets().add(String.valueOf(EntryPoint.class.getResource("/styles/Stye.css")));
 
         pane.setPrefHeight(300.0);
         pane.setPrefWidth(400.0);
         pane.getStyleClass().add("popuppane");
-        pane.getStylesheets().add("/popups/../styles/Stye.css");
+        //pane.getStylesheets().add("/popups/../styles/Stye.css");
+        pane.getStylesheets().add(String.valueOf(EntryPoint.class.getResource("/styles/Stye.css")));
 
         imageView.setFitHeight(389.0);
         imageView.setFitWidth(369.0);
@@ -52,7 +55,8 @@ public class TiePopUp extends AnchorPane {
         imageView.setLayoutY(-49.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(getClass().getResource("../resources/images/colorful_neon_border.png").toExternalForm()));
+        //imageView.setImage(new Image(getClass().getResource("../resources/images/colorful_neon_border.png").toExternalForm()));
+        imageView.setImage(new Image(EntryPoint.class.getResource("/resources/images/colorful_neon_border.png").toExternalForm()));
 
         imageView0.setFitHeight(131.0);
         imageView0.setFitWidth(155.0);
@@ -60,7 +64,8 @@ public class TiePopUp extends AnchorPane {
         imageView0.setLayoutY(56.0);
         imageView0.setPickOnBounds(true);
         imageView0.setPreserveRatio(true);
-        imageView0.setImage(new Image(getClass().getResource("../resources/images/GAMEOVER.png").toExternalForm()));
+        //imageView0.setImage(new Image(getClass().getResource("../resources/images/GAMEOVER.png").toExternalForm()));
+        imageView0.setImage(new Image(EntryPoint.class.getResource("/resources/images/GAMEOVER.png").toExternalForm()));
 
         imageView1.setFitHeight(73.0);
         imageView1.setFitWidth(133.0);
@@ -68,7 +73,8 @@ public class TiePopUp extends AnchorPane {
         imageView1.setLayoutY(222.0);
         imageView1.setPickOnBounds(true);
         imageView1.setPreserveRatio(true);
-        imageView1.setImage(new Image(getClass().getResource("../resources/images/oops.gif").toExternalForm()));
+        //imageView1.setImage(new Image(getClass().getResource("../resources/images/oops.gif").toExternalForm()));
+        imageView1.setImage(new Image(EntryPoint.class.getResource("/resources/images/oops.gif").toExternalForm()));
 
         button.setLayoutX(24.0);
         button.setLayoutY(255.0);

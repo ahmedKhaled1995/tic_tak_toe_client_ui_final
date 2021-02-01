@@ -1,5 +1,6 @@
 package popups;
 
+import Main.EntryPoint;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -53,14 +54,16 @@ public class ExitGamePopup extends AnchorPane {
         pane.setPrefHeight(300.0);
         pane.setPrefWidth(400.0);
         pane.getStyleClass().add("popuppane");
-        pane.getStylesheets().add("/popups/../styles/Stye.css");
+        //pane.getStylesheets().add("/popups/../styles/Stye.css");
+        pane.getStylesheets().add(String.valueOf(EntryPoint.class.getResource("/styles/Stye.css")));
 
         imageView.setFitHeight(401.0);
         imageView.setFitWidth(511.0);
         imageView.setLayoutY(-55.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(getClass().getResource("../resources/images/exit.gif").toExternalForm()));
+        //imageView.setImage(new Image(getClass().getResource("../resources/images/exit.gif").toExternalForm()));
+        imageView.setImage(new Image(EntryPoint.class.getResource("/resources/images/exit.gif").toExternalForm()));
 
         text.setLayoutX(69.0);
         text.setLayoutY(121.0);
@@ -98,7 +101,8 @@ public class ExitGamePopup extends AnchorPane {
         imageView0.setLayoutY(221.0);
         imageView0.setPickOnBounds(true);
         imageView0.setPreserveRatio(true);
-        imageView0.setImage(new Image(getClass().getResource("../resources/images/byebye.gif").toExternalForm()));
+        //imageView0.setImage(new Image(getClass().getResource("../resources/images/byebye.gif").toExternalForm()));
+        imageView0.setImage(new Image(EntryPoint.class.getResource("/resources/images/byebye.gif").toExternalForm()));
 
         text0.setLayoutX(117.0);
         text0.setLayoutY(65.0);

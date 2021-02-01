@@ -1,5 +1,6 @@
 package popups;
 
+import Main.EntryPoint;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -41,12 +42,14 @@ public class LoserPopUp extends AnchorPane {
         setPrefHeight(300.0);
         setPrefWidth(400.0);
         getStyleClass().add("popupanchor");
-        getStylesheets().add("/popups/../styles/Stye.css");
+        //getStylesheets().add("/popups/../styles/Stye.css");
+        pane.getStylesheets().add(String.valueOf(EntryPoint.class.getResource("/styles/Stye.css")));
 
         pane.setPrefHeight(300.0);
         pane.setPrefWidth(400.0);
         pane.getStyleClass().add("popuppane");
-        pane.getStylesheets().add("/popups/../styles/Stye.css");
+        //pane.getStylesheets().add("/popups/../styles/Stye.css");
+        pane.getStylesheets().add(String.valueOf(EntryPoint.class.getResource("/styles/Stye.css")));
 
         imageView.setFitHeight(416.0);
         imageView.setFitWidth(423.0);
@@ -54,7 +57,8 @@ public class LoserPopUp extends AnchorPane {
         imageView.setLayoutY(-58.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(getClass().getResource("../resources/images/neon_creative_geometric_lines.png").toExternalForm()));
+        //imageView.setImage(new Image(getClass().getResource("../resources/images/neon_creative_geometric_lines.png").toExternalForm()));
+        imageView.setImage(new Image(EntryPoint.class.getResource("/resources/images/neon_creative_geometric_lines.png").toExternalForm()));
 
         imageView0.setFitHeight(119.0);
         imageView0.setFitWidth(198.0);
@@ -62,7 +66,8 @@ public class LoserPopUp extends AnchorPane {
         imageView0.setLayoutY(94.0);
         imageView0.setPickOnBounds(true);
         imageView0.setPreserveRatio(true);
-        imageView0.setImage(new Image(getClass().getResource("../resources/images/loser.gif").toExternalForm()));
+        //imageView0.setImage(new Image(getClass().getResource("../resources/images/loser.gif").toExternalForm()));
+        imageView0.setImage(new Image(EntryPoint.class.getResource("/resources/images/loser.gif").toExternalForm()));
 
         button.setLayoutX(14.0);
         button.setLayoutY(255.0);
@@ -86,7 +91,9 @@ public class LoserPopUp extends AnchorPane {
         imageView1.setLayoutY(133.0);
         imageView1.setPickOnBounds(true);
         imageView1.setPreserveRatio(true);
-        imageView1.setImage(new Image(getClass().getResource("../resources/images/olaf_crying_left.gif").toExternalForm()));
+        //imageView1.setImage(new Image(getClass().getResource("../resources/images/olaf_crying_left.gif").toExternalForm()));
+        imageView1.setImage(new Image(EntryPoint.class.getResource("/resources/images/olaf_crying_left.gif").toExternalForm()));
+
 
         imageView2.setFitHeight(150.0);
         imageView2.setFitWidth(125.0);
@@ -94,7 +101,8 @@ public class LoserPopUp extends AnchorPane {
         imageView2.setLayoutY(133.0);
         imageView2.setPickOnBounds(true);
         imageView2.setPreserveRatio(true);
-        imageView2.setImage(new Image(getClass().getResource("../resources/images/olaf_crying_right.gif").toExternalForm()));
+        //imageView2.setImage(new Image(getClass().getResource("../resources/images/olaf_crying_right.gif").toExternalForm()));
+        imageView2.setImage(new Image(EntryPoint.class.getResource("/resources/images/olaf_crying_right.gif").toExternalForm()));
         pane.setOpaqueInsets(new Insets(0.0));
 
         innerShadow.setBlurType(javafx.scene.effect.BlurType.GAUSSIAN);

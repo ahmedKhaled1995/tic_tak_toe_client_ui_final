@@ -1,5 +1,6 @@
 package popups;
 
+import Main.EntryPoint;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -38,12 +39,14 @@ public class WaitingplayerresponseBase extends AnchorPane {
         setPrefHeight(300.0);
         setPrefWidth(400.0);
         getStyleClass().add("popupanchor");
-        getStylesheets().add("/popups/../styles/Stye.css");
+        //getStylesheets().add("/popups/../styles/Stye.css");
+        pane.getStylesheets().add(String.valueOf(EntryPoint.class.getResource("/styles/Stye.css")));
 
         pane.setPrefHeight(300.0);
         pane.setPrefWidth(400.0);
         pane.getStyleClass().add("popuppane");
-        pane.getStylesheets().add("/popups/../styles/Stye.css");
+        //pane.getStylesheets().add("/popups/../styles/Stye.css");
+        pane.getStylesheets().add(String.valueOf(EntryPoint.class.getResource("/styles/Stye.css")));
 
         imageView.setFitHeight(189.0);
         imageView.setFitWidth(228.0);
@@ -51,7 +54,8 @@ public class WaitingplayerresponseBase extends AnchorPane {
         imageView.setLayoutY(-17.0);
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(getClass().getResource("../resources/images/joysticks1.png").toExternalForm()));
+        //imageView.setImage(new Image(getClass().getResource("../resources/images/joysticks1.png").toExternalForm()));
+        imageView.setImage(new Image(EntryPoint.class.getResource("/resources/images/joysticks1.png").toExternalForm()));
 
         imageView0.setFitHeight(67.0);
         imageView0.setFitWidth(75.0);
@@ -59,7 +63,8 @@ public class WaitingplayerresponseBase extends AnchorPane {
         imageView0.setLayoutY(160.0);
         imageView0.setPickOnBounds(true);
         imageView0.setPreserveRatio(true);
-        imageView0.setImage(new Image(getClass().getResource("../resources/images/loading.gif").toExternalForm()));
+        //imageView0.setImage(new Image(getClass().getResource("../resources/images/loading.gif").toExternalForm()));
+        imageView0.setImage(new Image(EntryPoint.class.getResource("../resources/images/loading.gif").toExternalForm()));
 
         text.setLayoutX(57.0);
         text.setLayoutY(58.0);
