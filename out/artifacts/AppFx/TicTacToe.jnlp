@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="TicTacToe.jar" size="25946263" download="eager" />
+    <jar href="TicTacToe.jar" size="28536398" download="eager" />
     <jar href="fontawesomefx-8.9.jar" size="571068" download="eager" />
     <jar href="json-simple-1.1.1.jar" size="23737" download="eager" />
   </resources>

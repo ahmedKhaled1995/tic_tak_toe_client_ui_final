@@ -22,7 +22,7 @@
       </Label>
       <HBox alignment="CENTER_LEFT" layoutX="2.5" prefHeight="40.0" prefWidth="200.0" stylesheets="@../styles/Stye.css">
          <children>
-            <TextField fx:id="emailSignin" onKeyPressed="#addSoundEffect" prefHeight="26.0" prefWidth="440.0" promptText="Email" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
+            <TextField fx:id="emailSignin" onKeyPressed="#addSoundEffect" prefHeight="26.0" prefWidth="440.0" promptText="User Name" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></TextField>
