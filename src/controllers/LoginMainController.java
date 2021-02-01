@@ -47,12 +47,6 @@ public class LoginMainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         GameSound.stopMediaPlayer();
-//      stmt = con.createStatement();
-//      String queryString= new String("select * from players");
-//      ResultSet rs= stmt.executeQuery(queryString);
-//      ResultSetMetaData resultSetMetaData = rs.getMetaData();
-//      System.out.println(resultSetMetaData.getColumnName(2));
         TranslateTransition t = new TranslateTransition(Duration.seconds(0.1), vbox);
         t.setToX(vbox.getLayoutX() * 15);
         t.play();
@@ -71,6 +65,7 @@ public class LoginMainController implements Initializable {
 
     @FXML
     private void handleSignInBtnAction(ActionEvent event) {
+        GameSound.playTileClickTrack();
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
         t.setToX(vbox.getLayoutX() * 15);
         t.play();
@@ -88,7 +83,7 @@ public class LoginMainController implements Initializable {
 
     @FXML
     private void handleSignUpBtnAction(ActionEvent event) {
-
+        GameSound.playTileClickTrack();
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
         t.setToX(0);
         t.play();
@@ -102,18 +97,16 @@ public class LoginMainController implements Initializable {
             }
         });
     }
-     @FXML
-        private void exitGameClicked(MouseEvent event) {
+
+    @FXML
+    private void exitGameClicked(MouseEvent event) {
+        GameSound.playClickTrack();
         if (event.getButton() == MouseButton.PRIMARY) {
-             Platform.runLater(()->{
-           
+            Platform.runLater(() -> {
+
                 ExitGamePopup ExitGamePopup = new ExitGamePopup();
                 ExitGamePopup.display();
             });
-//            if (exitApplication() == true) {
-//                //SwitchSceneTo.getStage(event).close();
-//                System.exit(0);
-//            }
         }
     }
 }

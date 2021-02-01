@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import popups.PopupWindow;
 import util.GameConfig;
 import Main.EntryPoint;
+import javafx.scene.input.KeyEvent;
+import util.GameSound;
 
 /**
  * FXML Controller class
@@ -37,6 +39,7 @@ public class SignInController implements Initializable {
     } 
     @FXML
     private void signin(ActionEvent event) {
+        GameSound.playTileClickTrack();
         String username = emailSignin.getText();
         String password = passSignin.getText();
         if(verifyFields()){
@@ -52,6 +55,11 @@ public class SignInController implements Initializable {
         }else{
             return true;
         }
+    }
+
+    @FXML
+    private void addSoundEffect(KeyEvent event) {
+        GameSound.playTypingTrack();
     }
     
 }

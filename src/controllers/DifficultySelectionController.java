@@ -21,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import popups.ExitGamePopup;
 import util.GameConfig;
+import util.GameSound;
 import util.SwitchSceneTo;
 
 /**
@@ -66,54 +67,52 @@ public class DifficultySelectionController implements Initializable {
         GameConfig.setGameMode(gameMode);
         GameConfig.setCurrentView(viewIndex);
         animateScreen();
-//        this.intermediateBtn.setDisable(true);
-//        this.intermediateBtn.setVisible(false);
-        //userNameLabel.setText(DummyPlayer.getUserName());
-        //scoreLabel.setText(Integer.toString(DummyPlayer.getScore()));
     }
 
     @FXML
     private void handlEasyBtnAction(ActionEvent event) {
+        GameSound.playClickTrack();
         GameConfig.setGameDifficultyLevel(1);
         SwitchSceneTo.gameBoardScene(event);
     }
 
     @FXML
     private void handleIntermediateBtnAction(ActionEvent event) {
+        GameSound.playClickTrack();
         GameConfig.setGameDifficultyLevel(2);
         SwitchSceneTo.gameBoardScene(event);
     }
 
     @FXML
     private void handleHardBtnAction(ActionEvent event) {
+        GameSound.playClickTrack();
         GameConfig.setGameDifficultyLevel(3);
         SwitchSceneTo.gameBoardScene(event);
     }
 
     @FXML
     private void handlBackBtnAction(ActionEvent event) {
+        GameSound.playClickTrack();
         GameConfig.setGameMode(0);
         SwitchSceneTo.homeScene(event);
     }
 
     @FXML
     private void exitGameClicked(MouseEvent event) {
+        GameSound.playClickTrack();
         if (event.getButton() == MouseButton.PRIMARY) {
-             Platform.runLater(()->{
-           
+            Platform.runLater(() -> {
+
                 ExitGamePopup ExitGamePopup = new ExitGamePopup();
                 ExitGamePopup.display();
             });
-//            System.out.println("exit Button Working");
-//            if (exitApplication() == true) {
-//                //SwitchSceneTo.getStage(event).close();
-//                System.exit(0);
-//            }
         }
     }
 
     @FXML
     private void logOutClicked(MouseEvent event) {
+        GameSound.playClickTrack();
+        GameSound.stopMediaPlayer();
         if (event.getButton() == MouseButton.PRIMARY) {
             SwitchSceneTo.logInScene(event);
         }

@@ -16,7 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import popups.PopupWindow;
 import Main.EntryPoint;
+import javafx.scene.input.KeyEvent;
 import util.GameConfig;
+import util.GameSound;
 
 /**
  * FXML Controller class
@@ -54,34 +56,39 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void signup(ActionEvent event) {
+        GameSound.playTileClickTrack();
         String FnameSignup = FullnameSignup.getText().trim();
         String UnameSignup = UsernameSignup.getText().trim();
         String mailSignup = EmailSignup.getText().trim();
         String PSignup = PassSignup.getText().trim();
-        //String ConPSignup = ConfirmPassSignup.getText().trim();
         String genderValue = "";
         if (gender.getSelectedToggle() != null) {
             RadioButton selectedgender = (RadioButton) gender.getSelectedToggle();
             genderValue = selectedgender.getText();
         }
-        if(verifyFields()){
+        if (verifyFields()) {
             EntryPoint.getGameClient().signUp(FnameSignup, UnameSignup, PSignup, mailSignup, genderValue);
-        }else{
+        } else {
             PopupWindow.display("Error. Check your credentials!");
         }
     }
 
-    private boolean verifyFields(){
-        if(FullnameSignup.getText().equals("") || UsernameSignup.getText().equals("") ||
-                EmailSignup.getText().equals("") ||
-                PassSignup.getText().equals("") || ConfirmPassSignup.getText().equals("") ||
-                gender.getSelectedToggle() == null ){
+    private boolean verifyFields() {
+        if (FullnameSignup.getText().equals("") || UsernameSignup.getText().equals("")
+                || EmailSignup.getText().equals("")
+                || PassSignup.getText().equals("") || ConfirmPassSignup.getText().equals("")
+                || gender.getSelectedToggle() == null) {
             return false;
-        }else if(!PassSignup.getText().equals(ConfirmPassSignup.getText())){
+        } else if (!PassSignup.getText().equals(ConfirmPassSignup.getText())) {
             return false;
-        }else{
+        } else {
             return true;
         }
+    }
+
+    @FXML
+    private void addSoundEffect(KeyEvent event) {
+        GameSound.playTypingTrack();
     }
 
 }

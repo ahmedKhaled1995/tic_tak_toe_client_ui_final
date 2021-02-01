@@ -29,6 +29,7 @@ import Main.PlayerRow;
 import javafx.application.Platform;
 import popups.ExitGamePopup;
 import util.GameConfig;
+import util.GameSound;
 import util.SwitchSceneTo;
 
 /**
@@ -49,19 +50,6 @@ public class SavedGamesController implements Initializable {
     //------------------------------------------------------------------------
     private final int viewIndex = 5;
 
-    //Dummy Data
-    ImageView iconon = new ImageView("/resources/icons8.png");
-    ImageView maleoff = new ImageView("/resources/maleoff.png");
-    ImageView maleon = new ImageView("/resources/maleon.png");
-    ImageView emojon = new ImageView("/resources/emoj8.png");
-    ImageView emojoff = new ImageView("/resources/emoj9.png");
-
-    /*ObservableList<PlayerRow> list3 = FXCollections.observableArrayList(
-            new PlayerRow("player1", 100, maleon),
-            new PlayerRow("player2", 100, emojoff),
-            new PlayerRow("player3", 100, maleoff),
-            new PlayerRow("player4", 100, emojon)
-    );*/
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,7 +58,6 @@ public class SavedGamesController implements Initializable {
         gameIdCol.setCellValueFactory(new PropertyValueFactory<>("GameNumber"));
         gameResultCol.setCellValueFactory(new PropertyValueFactory<>("PlayerOneName"));
         opponentCol.setCellValueFactory(new PropertyValueFactory<>("PlayerTwoName"));
-        //savedGamesTable.setItems(list3);
         EntryPoint.getViewUpdater().setSavedGamesTable(this.savedGamesTable);
         EntryPoint.getGameClient().getUserGames();
 
@@ -80,49 +67,23 @@ public class SavedGamesController implements Initializable {
     private void handleWatchBtnAction(ActionEvent event) {
         int gameId = this.savedGamesTable.getSelectionModel().getSelectedItem().getGameNumber();
         EntryPoint.getGameClient().getSavedGame(gameId);
-        //SwitchSceneTo.gameBoardScene(event);
+        GameSound.playTileClickTrack();
     }
 
     @FXML
     private void handleBackBtnAction(ActionEvent event) {
+        GameSound.playClickTrack();
         SwitchSceneTo.homeScene(event);
     }
 
     @FXML
     private void exitGameClicked(MouseEvent event) {
-//        if (event.getButton() == MouseButton.PRIMARY) {
-//            if (exitApplication() == true) {
-//                //SwitchSceneTo.getStage(event).close();
-//                System.exit(0);
-//            }
-//        }
 
-            Platform.runLater(()->{
-           
-                ExitGamePopup ExitGamePopup = new ExitGamePopup();
-                ExitGamePopup.display();
-            });
+        Platform.runLater(() -> {
+
+            ExitGamePopup ExitGamePopup = new ExitGamePopup();
+            ExitGamePopup.display();
+        });
     }
 
-//    private boolean exitApplication() {
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//        alert.setTitle("System Message");
-//        alert.setHeaderText("Are you sure that you want to exit?");
-//
-//        ButtonType yes = new ButtonType("Yes");
-//        ButtonType no = new ButtonType("No");
-//
-//        alert.getButtonTypes().setAll(yes, no);
-//
-//        Boolean exit = null;
-//
-//        Optional<ButtonType> playerChoice = alert.showAndWait();
-//        if (playerChoice.get() == yes) {
-//            exit = true;
-//        } else if (playerChoice.get() == no) {
-//            exit = false;
-//        }
-//
-//        return exit;
-//    }
 }

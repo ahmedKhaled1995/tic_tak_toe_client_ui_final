@@ -97,7 +97,7 @@ public class GameSound {
     }
 
     public static void playAboutTrack() {
-        playAudioTrack(7, 1);
+        playMediaTrack(7, 1);
     }
 
     /**
@@ -122,6 +122,10 @@ public class GameSound {
 
     public static AudioClip getAudioClip() {
         return audiosPlayer;
+    }
+    
+    public static void stopAudio() {
+        audiosPlayer.stop();
     }
 
     public static MediaPlayer createMediaPlayer(int trackIndex) {

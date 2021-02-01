@@ -24,7 +24,7 @@
       </Label>
      <HBox alignment="CENTER_LEFT" layoutX="2.5" prefHeight="40.0" prefWidth="200.0" stylesheets="@../styles/Stye.css">
          <children>
-            <TextField fx:id="FullnameSignup" prefHeight="26.0" prefWidth="440.0" promptText="Full Name" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
+            <TextField fx:id="FullnameSignup" onKeyPressed="#addSoundEffect" prefHeight="26.0" prefWidth="440.0" promptText="Full Name" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -40,7 +40,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" stylesheets="@../styles/Stye.css">
          <children>
-            <TextField fx:id="UsernameSignup" prefHeight="26.0" prefWidth="440.0" promptText="User Name" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
+            <TextField fx:id="UsernameSignup" onKeyPressed="#addSoundEffect" prefHeight="26.0" prefWidth="440.0" promptText="User Name" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -53,7 +53,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="2.5" prefHeight="40.0" prefWidth="200.0" stylesheets="@../styles/Stye.css">
          <children>
-            <TextField fx:id="EmailSignup" prefHeight="26.0" prefWidth="440.0" promptText="Email" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
+            <TextField fx:id="EmailSignup" onKeyPressed="#addSoundEffect" prefHeight="26.0" prefWidth="440.0" promptText="Email" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></TextField>
@@ -97,7 +97,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0" stylesheets="@../styles/Stye.css">
          <children>
-            <PasswordField fx:id="PassSignup" prefHeight="26.0" prefWidth="440.0" promptText="Password" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
+            <PasswordField fx:id="PassSignup" onKeyPressed="#addSoundEffect" prefHeight="26.0" prefWidth="440.0" promptText="Password" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></PasswordField>
@@ -109,7 +109,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" stylesheets="@../styles/Stye.css">
          <children>
-            <PasswordField fx:id="ConfirmPassSignup" prefHeight="26.0" prefWidth="440.0" promptText="Confirm Password" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
+            <PasswordField fx:id="ConfirmPassSignup" onKeyPressed="#addSoundEffect" prefHeight="26.0" prefWidth="440.0" promptText="Confirm Password" styleClass="transparentfield_box" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></PasswordField>

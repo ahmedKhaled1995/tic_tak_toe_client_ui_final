@@ -3,12 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Courses/ITI-Cloud_Platform_Development_Track/Courses/20.Advanced.Java/Project/Shehab/New%20folder/tic_tak_toe_client-main/src/Main/GameLauncher.java</file>
-            <file>file:/E:/Courses/ITI-Cloud_Platform_Development_Track/Courses/20.Advanced.Java/Project/Shehab/New%20folder/tic_tak_toe_client-main/src/controllers/SignInController.java</file>
-            <file>file:/E:/Courses/ITI-Cloud_Platform_Development_Track/Courses/20.Advanced.Java/Project/Shehab/New%20folder/tic_tak_toe_client-main/src/util/GameConfig.java</file>
-            <file>file:/E:/Courses/ITI-Cloud_Platform_Development_Track/Courses/20.Advanced.Java/Project/Shehab/New%20folder/tic_tak_toe_client-main/src/controllers/HomeController.java</file>
-            <file>file:/E:/Courses/ITI-Cloud_Platform_Development_Track/Courses/20.Advanced.Java/Project/Shehab/New%20folder/tic_tak_toe_client-main/src/Main/DummyPlayer.java</file>
-            <file>file:/E:/Courses/ITI-Cloud_Platform_Development_Track/Courses/20.Advanced.Java/Project/Shehab/New%20folder/tic_tak_toe_client-main/src/controllers/LoginMainController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/controllers/SavedGamesController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/popups/WinnerPopup.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/controllers/HomeController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/util/GameSound.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/controllers/BoardController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/popups/LoserPopUp.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/util/SwitchSceneTo.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/controllers/LoginMainController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/util/PopUpScene.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/controllers/AboutController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/controllers/SignInController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/controllers/DifficultySelectionController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/controllers/LeaderBoardController.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/tic_tak_toe_client_ui_final/src/controllers/SignUpController.java</file>
         </group>
     </open-files>
 </project-private>

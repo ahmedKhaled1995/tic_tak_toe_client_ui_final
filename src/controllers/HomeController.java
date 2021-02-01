@@ -27,6 +27,7 @@ import javafx.util.Duration;
 import util.GameConfig;
 import popups.ExitGamePopup;
 import util.GameSound;
+
 /**
  * FXML Controller class
  *
@@ -64,7 +65,7 @@ public class HomeController implements Initializable {
     //--------------------------------------------------------------------------
     private final int viewIndex = 2;
     private final int gameMode = 0;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println(GameConfig.getGameMode());
@@ -104,51 +105,24 @@ public class HomeController implements Initializable {
     private void exitGameClicked(MouseEvent event) {
         GameSound.playClickTrack();
         if (event.getButton() == MouseButton.PRIMARY) {
-             Platform.runLater(()->{
-           
+            Platform.runLater(() -> {
+
                 ExitGamePopup ExitGamePopup = new ExitGamePopup();
                 ExitGamePopup.display();
             });
-//            if (exitApplication() == true) {
-//                //SwitchSceneTo.getStage(event).close();
-//                System.exit(0);
-//            }
         }
     }
 
     @FXML
     private void logOutClicked(MouseEvent event) {
-       GameSound.playClickTrack();
+        GameSound.playClickTrack();
+        GameSound.stopMediaPlayer();
         if (event.getButton() == MouseButton.PRIMARY) {
-            //SwitchSceneTo.logInScene(event);
             EntryPoint.getGameClient().logOut();
-            SwitchSceneTo.showScene(0);
+            SwitchSceneTo.logInScene(event);
         }
 
     }
-
-
-//    private boolean exitApplication() {
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//        alert.setTitle("System Message");
-//        alert.setHeaderText("Are you sure that you want to exit?");
-//
-//        ButtonType yes = new ButtonType("Yes");
-//        ButtonType no = new ButtonType("No");
-//
-//        alert.getButtonTypes().setAll(yes, no);
-//
-//        Boolean exit = null;
-//
-//        Optional<ButtonType> playerChoice = alert.showAndWait();
-//        if (playerChoice.get() == yes) {
-//            exit = true;
-//        } else if (playerChoice.get() == no) {
-//            exit = false;
-//        }
-//
-//        return exit;
-//    }
 
     private void animateScreen() {
         TranslateTransition transition1 = new TranslateTransition();
@@ -257,17 +231,4 @@ public class HomeController implements Initializable {
         fadeInTransition2.play();
         fadeInTransition2.setDelay(Duration.seconds(20));
     }
-
-    /*
-    //Will be used in multiple scenese, need to find a way to do some clean coding
-    private void handleConfigImgMouseClicked(MouseEvent event) {
-        if (event.getButton() == MouseButton.PRIMARY) {
-            System.out.println("Config Button Working");
-        }
-    }
-
-    private void handleConfigBtnAction(ActionEvent event) {
-        System.out.println("Moving Config Button Working");
-    }
-     */
 }

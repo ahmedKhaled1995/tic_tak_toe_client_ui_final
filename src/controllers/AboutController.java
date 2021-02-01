@@ -27,31 +27,31 @@ import util.GameSound;
  * @author Hager
  */
 public class AboutController implements Initializable {
-    
+
     private final int viewIndex = 7;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         GameConfig.setCurrentView(viewIndex);
-          GameSound.stopMediaPlayer();
+        GameSound.stopMediaPlayer();
         GameSound.playAboutTrack();
     }
 
     @FXML
     private void handleBackBtnAction(ActionEvent event) {
-       GameSound.playClickTrack();
-        GameSound.getAudioClip().stop();
+        GameSound.playClickTrack();
+        GameSound.stopMediaPlayer();
         SwitchSceneTo.homeScene(event);
     }
 
     @FXML
     private void exitGameClicked(MouseEvent event) {
         GameSound.playClickTrack();
-        Platform.runLater(()->{
-           
-                ExitGamePopup ExitGamePopup = new ExitGamePopup();
-                ExitGamePopup.display();
-            });
+        Platform.runLater(() -> {
+
+            ExitGamePopup ExitGamePopup = new ExitGamePopup();
+            ExitGamePopup.display();
+        });
     }
 
 }

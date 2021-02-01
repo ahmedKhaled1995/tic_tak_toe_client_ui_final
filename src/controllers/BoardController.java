@@ -10,7 +10,6 @@ package controllers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import Main.EntryPoint;
 import Main.Resource;
 import java.net.URL;
@@ -129,36 +128,35 @@ public class BoardController implements Initializable {
 
     @FXML
     private Button exit;
-    private Button ticTacToeButtons [][];
-    private int wins,losses,ties,numOfGames,turn; //first turn x ,2nd turn O o gets 4 turns
+    private Button ticTacToeButtons[][];
+    private int wins, losses, ties, numOfGames, turn; //first turn x ,2nd turn O o gets 4 turns
     private boolean gameOver = false;
     private boolean aiThinking = false;
 
     private boolean gameEnd = false; //gameEnd
 
     private boolean full = false;
-    public static boolean playerTurn=true;
-    public enum status {X,O,EMPTY};                                /* group of constants (unchangeable variables, like final variables).
+    public static boolean playerTurn = true;
+
+    public enum status {
+        X, O, EMPTY
+    };
+    /* group of constants (unchangeable variables, like final variables).
                                                                          status that some square can have --> X player O agent*/
-    private status boardStat[][]=new status[3][3];
+    private status boardStat[][] = new status[3][3];
 
     private Button[] buttons;
-
 
     private final int viewIndex = 4;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         GameConfig.setCurrentView(viewIndex);
         GameSound.stopMediaPlayer();
         GameSound.playGameBeginsTrack();
-        
-        if(GameConfig.getGameMode() == 2){  // Multiplayer
-            /*boolean answer = ConfirmBox.display("Save Game?");
-            if(answer){
-                EntryPoint.getGameClient().sendAcceptSaveGame();
-            }*/
+
+        if (GameConfig.getGameMode() == 2) {  // Multiplayer
             newgame.setText("Save");
             mainmeu.setDisable(true);
             mainmeu.setVisible(false);
@@ -168,15 +166,15 @@ public class BoardController implements Initializable {
             this.opponentName.setText(EntryPoint.getGameClient().getOpponentName());
             this.yourscore.setText(String.valueOf(EntryPoint.getGameClient().getScore()));
             this.opponentscore.setText(String.valueOf(EntryPoint.getGameClient().getOpponentScore()));
-            if(EntryPoint.getGameClient().getSymbol() == 1){  // x
+            if (EntryPoint.getGameClient().getSymbol() == 1) {  // x
                 this.xplayerimage.setImage(Resource.getXPic().getImage());
                 this.oplayerimage.setImage(Resource.getOPic().getImage());
-            }else{ // o
+            } else { // o
                 this.xplayerimage.setImage(Resource.getOPic().getImage());
                 this.oplayerimage.setImage(Resource.getXPic().getImage());
             }
 
-        }else if(GameConfig.getGameMode() == 1){   // Single player
+        } else if (GameConfig.getGameMode() == 1) {   // Single player
             ticTacToeButtons = new Button[3][3];
             ticTacToeButtons[0][0] = zone1;
             ticTacToeButtons[0][1] = zone2;
@@ -189,7 +187,7 @@ public class BoardController implements Initializable {
             ticTacToeButtons[2][2] = zone9;
             setData();
             resetGame();
-        }else{     // Re-play mode (0)
+        } else {     // Re-play mode (0)
             this.buttons = new Button[]{zone1, zone2, zone3, zone4, zone5, zone6, zone7, zone8, zone9};
             mainmeu.setDisable(true);
             newgame.setDisable(true);
@@ -201,46 +199,48 @@ public class BoardController implements Initializable {
             HashMap<Integer, String> board = EntryPoint.getViewUpdater().getButtonsMap();
             Timeline timeline = new Timeline();
             int i = 0;
-            for (Map.Entry<Integer,String> entry : board.entrySet()) {
+            for (Map.Entry<Integer, String> entry : board.entrySet()) {
                 timeline.getKeyFrames().add(
-                        new KeyFrame(Duration.millis((i+1)*1000),
+                        new KeyFrame(Duration.millis((i + 1) * 1000),
                                 e -> this.buttons[entry.getKey()].setText(entry.getValue())
                         )
                 );
                 i++;
             }
             timeline.getKeyFrames().add(
-                    new KeyFrame(Duration.millis((i+1)*1000), (e) -> {
+                    new KeyFrame(Duration.millis((i + 1) * 1000), (e) -> {
                         System.out.println("Display popup here");
                         mainmeu.setDisable(false);
                     })
             );
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
                 timeline.play();
             });
 
         }
 
     }
-    private void setData(){
+
+    private void setData() {
         //TODO READ FILE
         //IF fILE CAN'T be read set data
-        wins=0;
-        losses=0;
-        ties=0;
-        numOfGames=0;
+        wins = 0;
+        losses = 0;
+        ties = 0;
+        numOfGames = 0;
     }
-    private void resetGame(){
+
+    private void resetGame() {
         this.userName.setText(EntryPoint.getGameClient().getUserName());
         this.opponentName.setText("CPU");
         this.yourscore.setText(String.valueOf(EntryPoint.getGameClient().getScore()));
         this.opponentscore.setText("");
-        for(int c = 0; c < 3; c++){
-            for(int r =0; r < 3; r++){
+        for (int c = 0; c < 3; c++) {
+            for (int r = 0; r < 3; r++) {
                 //already instantiated
                 //go thro button c=0 r=1 ,r=2 etc and make them all blank ""
                 ticTacToeButtons[c][r].setText("");
-                boardStat[c][r]=status.EMPTY;
+                boardStat[c][r] = status.EMPTY;
 
             }
         }
@@ -249,33 +249,29 @@ public class BoardController implements Initializable {
         // headerLabel.setText("X's Turn. Click a button to take a spot!");
     }
 
-
-
-
-
-    private void doButtonAction(ActionEvent event){
+    private void doButtonAction(ActionEvent event) {
 
         System.out.println("Foo");
-        if(!gameOver && !aiThinking){
-            Button clickedBtn = (Button)event.getSource();
+        if (!gameOver && !aiThinking) {
+            Button clickedBtn = (Button) event.getSource();
             //already x or o(spot taken) we exit method
-            if(clickedBtn.getText().length() > 0){
-                if (turn % 2 !=0){
+            if (clickedBtn.getText().length() > 0) {
+                if (turn % 2 != 0) {
                     doTurnForAI();
                 }
                 return;
             }
-        /*turns to figure whose turn it is
+            /*turns to figure whose turn it is
         if turn =even --> x turn
         if turn = odd --> o turn
-        */
+             */
             //spot not taken,do logic
             String place;
 
-            if(turn %2 ==0){
+            if (turn % 2 == 0) {
                 //currently X's turn
                 place = "X";
-            }else{
+            } else {
                 //curently O's turn
                 place = "O";
             }
@@ -283,16 +279,18 @@ public class BoardController implements Initializable {
 
             clickedBtn.setText(place);
             //at6th turn
-            if(turn >=5){
+            if (turn >= 5) {
                 //Todo : check for winner
-                if(checkIfWon(place)) {
+                if (checkIfWon(place)) {
                     //Todo: Stop Game
                     // headerLabel.setText(String.format("%s Won!", place));
-                    Platform.runLater(()->{
-                        if(place.equalsIgnoreCase("x")){
+                    Platform.runLater(() -> {
+                        if (place.equalsIgnoreCase("x")) {
+                            GameSound.playWinTrack();
                             WinnerPopup winnerPopup = new WinnerPopup();
                             winnerPopup.display();
-                        }else{
+                        } else {
+                            GameSound.playLoseTrack();
                             LoserPopUp loserPopUp = new LoserPopUp();
                             loserPopUp.display();
                         }
@@ -301,23 +299,24 @@ public class BoardController implements Initializable {
                     return;
                 }
             }
-            if(turn == 9){
+            if (turn == 9) {
                 gameOver = true;
                 //headerLabel.setText("Game Over.. Draw! No Winner");
-                Platform.runLater(()->{
+                Platform.runLater(() -> {
+                    GameSound.playLoseTrack();
                     TiePopUp tiePopUp = new TiePopUp();
                     tiePopUp.display();
                 });
                 return;
             }
             //headerLabel.setText(String.format("%s's turn",turn %2 == 0? "X" : "O"));
-            if (turn %2 != 0){
+            if (turn % 2 != 0) {
                 //AI'S turn
                 aiThinking = true;
-                Runnable runnable = new Runnable(){
+                Runnable runnable = new Runnable() {
                     @Override
-                    public void run(){
-                        Platform.runLater(() ->{
+                    public void run() {
+                        Platform.runLater(() -> {
                             doTurnForAI();
                         });
                     }
@@ -328,24 +327,24 @@ public class BoardController implements Initializable {
 
         }
     }
-    private void doButtonAction2(ActionEvent event){
+
+    private void doButtonAction2(ActionEvent event) {
         System.out.println("shaghala");
 
-        int clickpos[]=getClickPostion(event);
+        int clickpos[] = getClickPostion(event);
 
-        if(boardStat[clickpos[0]][clickpos[1]]==status.X || boardStat[clickpos[0]][clickpos[1]]==status.O)
-        {       System.out.println("Enter in an empty position");
+        if (boardStat[clickpos[0]][clickpos[1]] == status.X || boardStat[clickpos[0]][clickpos[1]] == status.O) {
+            System.out.println("Enter in an empty position");
 
-        }
-        else if(playerTurn) { //false-agent turn, true-player turn
-            int[] clickAgent =new int[2];
+        } else if (playerTurn) { //false-agent turn, true-player turn
+            int[] clickAgent = new int[2];
             //player turn
             ticTacToeButtons[clickpos[0]][clickpos[1]].setText("O");
             boardStat[clickpos[0]][clickpos[1]] = status.O;
             turn++;				//check game board
             checkGame();
             //agent turn
-            clickAgent=agent();
+            clickAgent = agent();
             boardStat[clickAgent[0]][clickAgent[1]] = status.X;
             ticTacToeButtons[clickAgent[0]][clickAgent[1]].setText("X");
             turn++;
@@ -353,64 +352,65 @@ public class BoardController implements Initializable {
 
         }
     }
-    private int[] getClickPostion(ActionEvent event) { //when the user play this func get his clicked location
-        Button sourceButton = (Button)event.getSource(); //sourceButton holds the button that clicked as event
 
-        int[] clicked=new int[2];
-        for(int c=0;c<3;c++)
-            for(int r=0;r<3;r++) {
-                if(sourceButton==ticTacToeButtons[c][r]) {
-                    clicked[0]=c;
-                    clicked[1]=r;
+    private int[] getClickPostion(ActionEvent event) { //when the user play this func get his clicked location
+        Button sourceButton = (Button) event.getSource(); //sourceButton holds the button that clicked as event
+
+        int[] clicked = new int[2];
+        for (int c = 0; c < 3; c++) {
+            for (int r = 0; r < 3; r++) {
+                if (sourceButton == ticTacToeButtons[c][r]) {
+                    clicked[0] = c;
+                    clicked[1] = r;
                     break;
                 }
             }
+        }
         return clicked; //returns location ex: 00 or 01
     }
+
     private status checkBord() { //we check every col and row and diagonal if there is a winer
 
-        for(int i=0 ; i<3 ; i++) {
-            if(boardStat[0][i] == boardStat[1][i] && boardStat[1][i] == boardStat[2][i] &&  boardStat[2][i]!= status.EMPTY)
+        for (int i = 0; i < 3; i++) {
+            if (boardStat[0][i] == boardStat[1][i] && boardStat[1][i] == boardStat[2][i] && boardStat[2][i] != status.EMPTY) {
                 return boardStat[0][i];
+            }
         }
 
-        for(int i=0 ; i<3 ; i++) {
-            if(boardStat[i][0] == boardStat[i][1] && boardStat[i][1] == boardStat[i][2] &&boardStat[i][2] != status.EMPTY)
+        for (int i = 0; i < 3; i++) {
+            if (boardStat[i][0] == boardStat[i][1] && boardStat[i][1] == boardStat[i][2] && boardStat[i][2] != status.EMPTY) {
                 return boardStat[i][0];
+            }
 
         }
-        if(boardStat[0][0] == boardStat[1][1] && boardStat[1][1] == boardStat[2][2] && boardStat[2][2] != status.EMPTY)
-        {
+        if (boardStat[0][0] == boardStat[1][1] && boardStat[1][1] == boardStat[2][2] && boardStat[2][2] != status.EMPTY) {
             return boardStat[0][0];
         }
-        if(boardStat[2][0] == boardStat[1][1] && boardStat[1][1] == boardStat[0][2] && boardStat[0][2] != status.EMPTY)
-        {
+        if (boardStat[2][0] == boardStat[1][1] && boardStat[1][1] == boardStat[0][2] && boardStat[0][2] != status.EMPTY) {
             return boardStat[2][0];
         }
 
         return status.EMPTY;
     }
+
     private int[] agent() { //this func uses the board to check which place i need to put the next X with the G and H functions
         int[][] Harr = new int[3][3];
         int[] ret = new int[2];
-        int Hmax=0, row = 0, column = 0, flag =0;
-        for(int c=0;c<3;c++) {
-            for(int r=0;r<3;r++)
-            {
-                if(boardStat[c][r]==status.EMPTY)  //if the square is empty we calculete: f = h + g
+        int Hmax = 0, row = 0, column = 0, flag = 0;
+        for (int c = 0; c < 3; c++) {
+            for (int r = 0; r < 3; r++) {
+                if (boardStat[c][r] == status.EMPTY) //if the square is empty we calculete: f = h + g
                 {
-                    Harr[c][r] = g(c,r) + h(c,r);
-                    if(Harr[c][r] > Hmax)
-                    {
-                        Hmax=Harr[c][r];
-                        row=c;
-                        column=r;
-                        flag=1;
+                    Harr[c][r] = g(c, r) + h(c, r);
+                    if (Harr[c][r] > Hmax) {
+                        Hmax = Harr[c][r];
+                        row = c;
+                        column = r;
+                        flag = 1;
                     }
-                    if(flag ==0)
-                    {
-                        row=c;
-                        column=r;
+                    if (flag == 0) {
+                        row = c;
+                        column = r;
                     }
                 }
 
@@ -422,168 +422,158 @@ public class BoardController implements Initializable {
         return ret;
 
     }
-    private int g(int row , int column)   // in this function we are give to all empty square the greedy value
+
+    private int g(int row, int column) // in this function we are give to all empty square the greedy value
     {
         int countO = 0;
-        int Fval=0;
+        int Fval = 0;
 
-        for(int i=0;i<3;i++) { // check row
-            if(boardStat[row][i] ==  status.X)
+        for (int i = 0; i < 3; i++) { // check row
+            if (boardStat[row][i] == status.X) {
                 countO--;
-            if(boardStat[row][i] ==  status.O)
-                countO++;
-        }
-        if (countO == 2)
-        {
-            Fval = 100;
-            return Fval;
-        }
-        countO=0;
-        for(int j=0;j<3;j++) { // check column
-            if(boardStat[j][column] ==  status.X)
-                countO--;
-            if(boardStat[j][column] ==  status.O)
-                countO++;
-        }
-        if (countO == 2)
-        {
-            Fval = 100;
-            return Fval;
-        }
-        countO=0;
-        // check diagonals
-        if (row == column)
-        {
-            for(int i=0 ; i<3 ; i++)
-            {
-                if(boardStat[i][i] ==  status.X)
-                    countO--;
-                if(boardStat[i][i] ==  status.O)
-                    countO++;
             }
-            if (countO == 2)
-            {
+            if (boardStat[row][i] == status.O) {
+                countO++;
+            }
+        }
+        if (countO == 2) {
+            Fval = 100;
+            return Fval;
+        }
+        countO = 0;
+        for (int j = 0; j < 3; j++) { // check column
+            if (boardStat[j][column] == status.X) {
+                countO--;
+            }
+            if (boardStat[j][column] == status.O) {
+                countO++;
+            }
+        }
+        if (countO == 2) {
+            Fval = 100;
+            return Fval;
+        }
+        countO = 0;
+        // check diagonals
+        if (row == column) {
+            for (int i = 0; i < 3; i++) {
+                if (boardStat[i][i] == status.X) {
+                    countO--;
+                }
+                if (boardStat[i][i] == status.O) {
+                    countO++;
+                }
+            }
+            if (countO == 2) {
                 Fval = 100;
                 return Fval;
             }
-            countO=0;
+            countO = 0;
         }
-
 
         // check second diagonal
-        if (row + column == 2)
-        {
-            for(int i=0, j=2 ; i<3 ; i++ , j--)
-            {
-                if(boardStat[i][j] ==  status.X)
+        if (row + column == 2) {
+            for (int i = 0, j = 2; i < 3; i++, j--) {
+                if (boardStat[i][j] == status.X) {
                     countO--;
-                if(boardStat[i][j] ==  status.O)
+                }
+                if (boardStat[i][j] == status.O) {
                     countO++;
+                }
             }
-            if (countO == 2)
-            {
+            if (countO == 2) {
                 Fval = 100;
                 return Fval;
             }
         }
-
 
         return Fval;
     }
-    private int h(int row , int column) // in this function we are give to all empty square the huristic value
+
+    private int h(int row, int column) // in this function we are give to all empty square the huristic value
     {
         int countX = 0;
-        int countO= 0;
+        int countO = 0;
         int Hval = 0;
-        for(int i=0;i<3;i++) { // check row
+        for (int i = 0; i < 3; i++) { // check row
 
-            if(boardStat[row][i] ==  status.X)
+            if (boardStat[row][i] == status.X) {
                 countX++;
-            if(boardStat[row][i] ==  status.O)
+            }
+            if (boardStat[row][i] == status.O) {
                 countO++;
+            }
         }
 
-        if(countO == 0)
-        {
-            if (countX == 2)
-            {
-                Hval+=1000;
+        if (countO == 0) {
+            if (countX == 2) {
+                Hval += 1000;
                 return Hval;
-            }
-            else {
+            } else {
                 Hval++;
             }
         }
         countX = 0;
-        countO= 0;
+        countO = 0;
 
-        for(int j=0;j<3;j++) { // check column
+        for (int j = 0; j < 3; j++) { // check column
 
-            if(boardStat[j][column] ==  status.X)
+            if (boardStat[j][column] == status.X) {
                 countX++;
-            if(boardStat[j][column] ==  status.O)
+            }
+            if (boardStat[j][column] == status.O) {
                 countO++;
+            }
         }
 
-        if(countO == 0)
-        {
-            if (countX == 2)
-            {
-                Hval+=1000;
+        if (countO == 0) {
+            if (countX == 2) {
+                Hval += 1000;
                 return Hval;
-            }
-            else {
+            } else {
                 Hval++;
             }
         }
         countX = 0;
-        countO= 0;
+        countO = 0;
 
         // check main diagonal
-        if (row == column)
-        {
-            for(int i=0 ; i<3 ; i++)
-            {
-                if(boardStat[i][i] ==  status.X)
+        if (row == column) {
+            for (int i = 0; i < 3; i++) {
+                if (boardStat[i][i] == status.X) {
                     countX++;
-                if(boardStat[i][i] ==  status.O)
-                    countO++;
-            }
-            if(countO == 0)
-            {
-                if (countX == 2)
-                {
-                    Hval+=1000;
-                    return Hval;
                 }
-                else {
+                if (boardStat[i][i] == status.O) {
+                    countO++;
+                }
+            }
+            if (countO == 0) {
+                if (countX == 2) {
+                    Hval += 1000;
+                    return Hval;
+                } else {
                     Hval++;
                 }
             }
             countX = 0;
-            countO= 0;
+            countO = 0;
         }
 
-
-
         // check second diagonal
-        if (row + column == 2)
-        {
-            for(int i=0, j=2 ; i<3 ; i++ , j--)
-            {
-                if(boardStat[i][j] ==  status.X)
+        if (row + column == 2) {
+            for (int i = 0, j = 2; i < 3; i++, j--) {
+                if (boardStat[i][j] == status.X) {
                     countX++;
-                if(boardStat[i][j] ==  status.O)
-                    countO++;
-            }
-            if(countO == 0)
-            {
-                if (countX == 2)
-                {
-                    Hval+=1000;
-                    return Hval;
                 }
-                else {
+                if (boardStat[i][j] == status.O) {
+                    countO++;
+                }
+            }
+            if (countO == 0) {
+                if (countX == 2) {
+                    Hval += 1000;
+                    return Hval;
+                } else {
                     Hval++;
                 }
             }
@@ -591,12 +581,12 @@ public class BoardController implements Initializable {
 
         return Hval;
     }
+
     private void checkGame() // check the board game if there is a winer\loser or it is tie
     {
-        if(checkBord()==status.O)
-
-        {
-            Platform.runLater(()->{
+        if (checkBord() == status.O) {
+            Platform.runLater(() -> {
+                GameSound.playWinTrack();
                 WinnerPopup winnerPopup = new WinnerPopup();
                 winnerPopup.display();
                 System.out.println("YOU WIN");
@@ -604,99 +594,89 @@ public class BoardController implements Initializable {
             });
 
         }
-        if(checkBord()==status.X)
-        {
+        if (checkBord() == status.X) {
             // POPUP :"You Lose, The AI win"
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
+                GameSound.playLoseTrack();
                 LoserPopUp loserPopUp = new LoserPopUp();
                 loserPopUp.display();
             });
             gameEnd = true;
 
-
         }
-        full=true;
-        for(int i=0;i<3;i++) {
-            for(int j=0;j<3;j++)
-            {
-                if(boardStat[i][j]==status.EMPTY)
-                    full=false;
+        full = true;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (boardStat[i][j] == status.EMPTY) {
+                    full = false;
+                }
             }
         }
 
-        if(full && !(gameEnd)&& turn ==9) {
+        if (full && !(gameEnd) && turn == 9) {
             gameEnd = true;
             //POPUP TIE
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
+                GameSound.playLoseTrack();
                 TiePopUp tiePopUp = new TiePopUp();
                 tiePopUp.display();
             });
-            for(int c = 0; c < 3; c++){
-                for(int r =0; r < 3; r++){
+            for (int c = 0; c < 3; c++) {
+                for (int r = 0; r < 3; r++) {
                     ticTacToeButtons[c][r] = new Button("");
-                    boardStat[c][r]=status.EMPTY;
+                    boardStat[c][r] = status.EMPTY;
                 }
             }
 
-
-
         }
-
-
-
-
-
 
     }
 
-
-
     //5thturn check for a winner
-
     private boolean checkIfWon(String player) {
         //Todo Check ticTacToeButtons
         //check all rows horizontallly
         //check all columns vertically
         //check diagonally -> 2 diagonals 00 11 22, 02,11,20
         //check diagonally both ways
-        if(player.equals(ticTacToeButtons[0][0].getText()) &&
-                player.equals(ticTacToeButtons[1][1].getText()) &&
-                player.equals(ticTacToeButtons[2][2].getText())){
+        if (player.equals(ticTacToeButtons[0][0].getText())
+                && player.equals(ticTacToeButtons[1][1].getText())
+                && player.equals(ticTacToeButtons[2][2].getText())) {
             return true;
         }
-        if(player.equals(ticTacToeButtons[0][0].getText()) &&
-                player.equals(ticTacToeButtons[0][1].getText()) &&
-                player.equals(ticTacToeButtons[0][2].getText())){
+        if (player.equals(ticTacToeButtons[0][0].getText())
+                && player.equals(ticTacToeButtons[0][1].getText())
+                && player.equals(ticTacToeButtons[0][2].getText())) {
             return true;
         }
-        if(player.equals(ticTacToeButtons[1][0].getText()) &&
-                player.equals(ticTacToeButtons[1][1].getText()) &&
-                player.equals(ticTacToeButtons[1][2].getText())){
+        if (player.equals(ticTacToeButtons[1][0].getText())
+                && player.equals(ticTacToeButtons[1][1].getText())
+                && player.equals(ticTacToeButtons[1][2].getText())) {
             return true;
         }
-        if(player.equals(ticTacToeButtons[2][0].getText()) &&
-                player.equals(ticTacToeButtons[2][1].getText()) &&
-                player.equals(ticTacToeButtons[2][2].getText())){
+        if (player.equals(ticTacToeButtons[2][0].getText())
+                && player.equals(ticTacToeButtons[2][1].getText())
+                && player.equals(ticTacToeButtons[2][2].getText())) {
             return true;
         }
-        if(player.equals(ticTacToeButtons[0][0].getText()) &&
-                player.equals(ticTacToeButtons[1][0].getText()) &&
-                player.equals(ticTacToeButtons[2][0].getText())){
+        if (player.equals(ticTacToeButtons[0][0].getText())
+                && player.equals(ticTacToeButtons[1][0].getText())
+                && player.equals(ticTacToeButtons[2][0].getText())) {
             return true;
         }
-        if(player.equals(ticTacToeButtons[0][1].getText()) &&
-                player.equals(ticTacToeButtons[1][1].getText()) &&
-                player.equals(ticTacToeButtons[2][1].getText())){
+        if (player.equals(ticTacToeButtons[0][1].getText())
+                && player.equals(ticTacToeButtons[1][1].getText())
+                && player.equals(ticTacToeButtons[2][1].getText())) {
             return true;
         }
-        if(player.equals(ticTacToeButtons[0][2].getText()) &&
-                player.equals(ticTacToeButtons[1][2].getText()) &&
-                player.equals(ticTacToeButtons[2][2].getText())){
+        if (player.equals(ticTacToeButtons[0][2].getText())
+                && player.equals(ticTacToeButtons[1][2].getText())
+                && player.equals(ticTacToeButtons[2][2].getText())) {
             return true;
         }
-        if(player.equals(ticTacToeButtons[0][2].getText()) &&
-                player.equals(ticTacToeButtons[1][1].getText()) &&
-                player.equals(ticTacToeButtons[2][0].getText())){
+        if (player.equals(ticTacToeButtons[0][2].getText())
+                && player.equals(ticTacToeButtons[1][1].getText())
+                && player.equals(ticTacToeButtons[2][0].getText())) {
             return true;
         }
 
@@ -708,17 +688,16 @@ public class BoardController implements Initializable {
         //randomly pick buttonsS
         System.out.println("Ai's tutn");
         aiThinking = false;
-        int row = (int)(Math.random()*3);
-        int col = (int)(Math.random()*3);
+        int row = (int) (Math.random() * 3);
+        int col = (int) (Math.random() * 3);
         System.out.println(row + ":" + col);
         ticTacToeButtons[row][col].fire();
     }
 
-
     @FXML
     void mainmenuHandle(ActionEvent event) {
         GameSound.playClickTrack();
-        if(GameConfig.getGameMode() == 1 || GameConfig.getGameMode() == 0){ // Single player or Re-play
+        if (GameConfig.getGameMode() == 1 || GameConfig.getGameMode() == 0) { // Single player or Re-play
             //GameConfig.setGameMode(2);
             SwitchSceneTo.showScene(1);
         }
@@ -728,9 +707,9 @@ public class BoardController implements Initializable {
     @FXML
     void newgameHandle(ActionEvent event) {
         GameSound.playClickTrack();
-        if(GameConfig.getGameMode() == 1){ // Single player
+        if (GameConfig.getGameMode() == 1) { // Single player
             resetGame();
-        }else if(GameConfig.getGameMode() == 2){
+        } else if (GameConfig.getGameMode() == 2) {
             EntryPoint.getGameClient().sendAcceptSaveGame();
             newgame.setDisable(true);
         }
@@ -746,27 +725,27 @@ public class BoardController implements Initializable {
     @FXML
     void exit(ActionEvent event) {
 //        System.exit(0);
-            Platform.runLater(()->{
-           
-                ExitGamePopup ExitGamePopup = new ExitGamePopup();
-                ExitGamePopup.display();
-            });
+        Platform.runLater(() -> {
+
+            ExitGamePopup ExitGamePopup = new ExitGamePopup();
+            ExitGamePopup.display();
+        });
 
     }
 
     @FXML
     void zone1hadle(ActionEvent event) {
-         GameSound.playTileClickTrack();
-        if(GameConfig.getGameMode() == 2){
-            if(EntryPoint.getGameClient().getMyTurn() && this.buttons[0].getText().equals("")){
+        GameSound.playTileClickTrack();
+        if (GameConfig.getGameMode() == 2) {
+            if (EntryPoint.getGameClient().getMyTurn() && this.buttons[0].getText().equals("")) {
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[0].getId(),
                         EntryPoint.getGameClient().getSymbol());
 
             }
-        }else if(GameConfig.getGameMode() == 1){
-            if (GameConfig.getGameDiffficultyLevel() == 1){
+        } else if (GameConfig.getGameMode() == 1) {
+            if (GameConfig.getGameDiffficultyLevel() == 1) {
                 doButtonAction(event);
-            } else if (GameConfig.getGameDiffficultyLevel() == 3){
+            } else if (GameConfig.getGameDiffficultyLevel() == 3) {
                 doButtonAction2(event);
             }
 
@@ -776,16 +755,16 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone2Handle(ActionEvent event) {
-         GameSound.playTileClickTrack();
-        if(GameConfig.getGameMode() == 2){
-            if(EntryPoint.getGameClient().getMyTurn() && this.buttons[1].getText().equals("")){
+        GameSound.playTileClickTrack();
+        if (GameConfig.getGameMode() == 2) {
+            if (EntryPoint.getGameClient().getMyTurn() && this.buttons[1].getText().equals("")) {
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[1].getId(),
                         EntryPoint.getGameClient().getSymbol());
             }
-        }else if(GameConfig.getGameMode() == 1){
-            if (GameConfig.getGameDiffficultyLevel() == 1){
+        } else if (GameConfig.getGameMode() == 1) {
+            if (GameConfig.getGameDiffficultyLevel() == 1) {
                 doButtonAction(event);
-            } else if (GameConfig.getGameDiffficultyLevel() == 3){
+            } else if (GameConfig.getGameDiffficultyLevel() == 3) {
                 doButtonAction2(event);
             }
 
@@ -794,16 +773,16 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone3Handle(ActionEvent event) {
-         GameSound.playTileClickTrack();
-        if(GameConfig.getGameMode() == 2){
-            if(EntryPoint.getGameClient().getMyTurn() && this.buttons[2].getText().equals("")){
+        GameSound.playTileClickTrack();
+        if (GameConfig.getGameMode() == 2) {
+            if (EntryPoint.getGameClient().getMyTurn() && this.buttons[2].getText().equals("")) {
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[2].getId(),
                         EntryPoint.getGameClient().getSymbol());
             }
-        }else if(GameConfig.getGameMode() == 1){
-            if (GameConfig.getGameDiffficultyLevel() == 1){
+        } else if (GameConfig.getGameMode() == 1) {
+            if (GameConfig.getGameDiffficultyLevel() == 1) {
                 doButtonAction(event);
-            } else if (GameConfig.getGameDiffficultyLevel() == 3){
+            } else if (GameConfig.getGameDiffficultyLevel() == 3) {
                 doButtonAction2(event);
             }
 
@@ -812,16 +791,16 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone4Handle(ActionEvent event) {
-         GameSound.playTileClickTrack();
-        if(GameConfig.getGameMode() == 2){
-            if(EntryPoint.getGameClient().getMyTurn() && this.buttons[3].getText().equals("")){
+        GameSound.playTileClickTrack();
+        if (GameConfig.getGameMode() == 2) {
+            if (EntryPoint.getGameClient().getMyTurn() && this.buttons[3].getText().equals("")) {
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[3].getId(),
                         EntryPoint.getGameClient().getSymbol());
             }
-        }else if(GameConfig.getGameMode() == 1){
-            if (GameConfig.getGameDiffficultyLevel() == 1){
+        } else if (GameConfig.getGameMode() == 1) {
+            if (GameConfig.getGameDiffficultyLevel() == 1) {
                 doButtonAction(event);
-            } else if (GameConfig.getGameDiffficultyLevel() == 3){
+            } else if (GameConfig.getGameDiffficultyLevel() == 3) {
                 doButtonAction2(event);
             }
 
@@ -830,16 +809,16 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone5Handle(ActionEvent event) {
-         GameSound.playTileClickTrack();
-        if(GameConfig.getGameMode() == 2){
-            if(EntryPoint.getGameClient().getMyTurn() && this.buttons[4].getText().equals("")){
+        GameSound.playTileClickTrack();
+        if (GameConfig.getGameMode() == 2) {
+            if (EntryPoint.getGameClient().getMyTurn() && this.buttons[4].getText().equals("")) {
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[4].getId(),
                         EntryPoint.getGameClient().getSymbol());
             }
-        }else if(GameConfig.getGameMode() == 1){
-            if (GameConfig.getGameDiffficultyLevel() == 1){
+        } else if (GameConfig.getGameMode() == 1) {
+            if (GameConfig.getGameDiffficultyLevel() == 1) {
                 doButtonAction(event);
-            } else if (GameConfig.getGameDiffficultyLevel() == 3){
+            } else if (GameConfig.getGameDiffficultyLevel() == 3) {
                 doButtonAction2(event);
             }
 
@@ -848,16 +827,16 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone6Handle(ActionEvent event) {
-         GameSound.playTileClickTrack();
-        if(GameConfig.getGameMode() == 2){
-            if(EntryPoint.getGameClient().getMyTurn() && this.buttons[5].getText().equals("")){
+        GameSound.playTileClickTrack();
+        if (GameConfig.getGameMode() == 2) {
+            if (EntryPoint.getGameClient().getMyTurn() && this.buttons[5].getText().equals("")) {
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[5].getId(),
                         EntryPoint.getGameClient().getSymbol());
             }
-        }else if(GameConfig.getGameMode() == 1){
-            if (GameConfig.getGameDiffficultyLevel() == 1){
+        } else if (GameConfig.getGameMode() == 1) {
+            if (GameConfig.getGameDiffficultyLevel() == 1) {
                 doButtonAction(event);
-            } else if (GameConfig.getGameDiffficultyLevel() == 3){
+            } else if (GameConfig.getGameDiffficultyLevel() == 3) {
                 doButtonAction2(event);
             }
 
@@ -866,16 +845,16 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone7Handle(ActionEvent event) {
-         GameSound.playTileClickTrack();
-        if(GameConfig.getGameMode() == 2){
-            if(EntryPoint.getGameClient().getMyTurn() && this.buttons[6].getText().equals("")){
+        GameSound.playTileClickTrack();
+        if (GameConfig.getGameMode() == 2) {
+            if (EntryPoint.getGameClient().getMyTurn() && this.buttons[6].getText().equals("")) {
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[6].getId(),
                         EntryPoint.getGameClient().getSymbol());
             }
-        }else if(GameConfig.getGameMode() == 1){
-            if (GameConfig.getGameDiffficultyLevel() == 1){
+        } else if (GameConfig.getGameMode() == 1) {
+            if (GameConfig.getGameDiffficultyLevel() == 1) {
                 doButtonAction(event);
-            } else if (GameConfig.getGameDiffficultyLevel() == 3){
+            } else if (GameConfig.getGameDiffficultyLevel() == 3) {
                 doButtonAction2(event);
             }
 
@@ -884,16 +863,16 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone8Handle(ActionEvent event) {
-         GameSound.playTileClickTrack();
-        if(GameConfig.getGameMode() == 2){
-            if(EntryPoint.getGameClient().getMyTurn() && this.buttons[7].getText().equals("")){
+        GameSound.playTileClickTrack();
+        if (GameConfig.getGameMode() == 2) {
+            if (EntryPoint.getGameClient().getMyTurn() && this.buttons[7].getText().equals("")) {
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[7].getId(),
                         EntryPoint.getGameClient().getSymbol());
             }
-        }else if(GameConfig.getGameMode() == 1){
-            if (GameConfig.getGameDiffficultyLevel() == 1){
+        } else if (GameConfig.getGameMode() == 1) {
+            if (GameConfig.getGameDiffficultyLevel() == 1) {
                 doButtonAction(event);
-            } else if (GameConfig.getGameDiffficultyLevel() == 3){
+            } else if (GameConfig.getGameDiffficultyLevel() == 3) {
                 doButtonAction2(event);
             }
 
@@ -902,16 +881,16 @@ public class BoardController implements Initializable {
 
     @FXML
     void zone9Handle(ActionEvent event) {
-         GameSound.playTileClickTrack();
-        if(GameConfig.getGameMode() == 2){
-            if(EntryPoint.getGameClient().getMyTurn() && this.buttons[8].getText().equals("")){
+        GameSound.playTileClickTrack();
+        if (GameConfig.getGameMode() == 2) {
+            if (EntryPoint.getGameClient().getMyTurn() && this.buttons[8].getText().equals("")) {
                 EntryPoint.getGameClient().sendMoveToServer(this.buttons[8].getId(),
                         EntryPoint.getGameClient().getSymbol());
             }
-        }else if(GameConfig.getGameMode() == 1){
-            if (GameConfig.getGameDiffficultyLevel() == 1){
+        } else if (GameConfig.getGameMode() == 1) {
+            if (GameConfig.getGameDiffficultyLevel() == 1) {
                 doButtonAction(event);
-            } else if (GameConfig.getGameDiffficultyLevel() == 3){
+            } else if (GameConfig.getGameDiffficultyLevel() == 3) {
                 doButtonAction2(event);
             }
 
