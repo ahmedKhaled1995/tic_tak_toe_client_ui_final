@@ -211,6 +211,12 @@ public class GameClient {
         this.ps.println(object.toJSONString());
     }
 
+    public void logOut(){
+        JSONObject object = createJsonObject();
+        object.put("type", "logout");
+        this.ps.println(object.toJSONString());
+    }
+
     public void requestUsers(){
         JSONObject object = createJsonObject();
         object.put("type", "getUsers");

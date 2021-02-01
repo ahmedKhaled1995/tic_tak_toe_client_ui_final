@@ -114,6 +114,7 @@ public class HomeController implements Initializable {
     private void logOutClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
             //SwitchSceneTo.logInScene(event);
+            EntryPoint.getGameClient().logOut();
             SwitchSceneTo.showScene(0);
         }
 
