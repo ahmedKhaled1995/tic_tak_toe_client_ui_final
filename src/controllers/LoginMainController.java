@@ -47,6 +47,14 @@ public class LoginMainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+<<<<<<< HEAD
+=======
+//      stmt = con.createStatement();
+//      String queryString= new String("select * from players");
+//      ResultSet rs= stmt.executeQuery(queryString);
+//      ResultSetMetaData resultSetMetaData = rs.getMetaData();
+//      System.out.println(resultSetMetaData.getColumnName(2));
+>>>>>>> ed487cc74a209d1f2d215d0cacc7356526c1bbe3
         TranslateTransition t = new TranslateTransition(Duration.seconds(0.1), vbox);
         t.setToX(vbox.getLayoutX() * 15);
         t.play();

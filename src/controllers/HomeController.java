@@ -103,7 +103,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void exitGameClicked(MouseEvent event) {
-        GameSound.playClickTrack();
+        GameSound.stopMediaPlayer();
         if (event.getButton() == MouseButton.PRIMARY) {
             Platform.runLater(() -> {
 
@@ -115,14 +115,22 @@ public class HomeController implements Initializable {
 
     @FXML
     private void logOutClicked(MouseEvent event) {
+<<<<<<< HEAD
         GameSound.playClickTrack();
         GameSound.stopMediaPlayer();
+=======
+       GameSound.stopMediaPlayer();
+>>>>>>> ed487cc74a209d1f2d215d0cacc7356526c1bbe3
         if (event.getButton() == MouseButton.PRIMARY) {
             EntryPoint.getGameClient().logOut();
             SwitchSceneTo.logInScene(event);
         }
 
     }
+      @FXML
+        private void mutesound(MouseEvent event) {
+           GameSound.stopMediaPlayer();
+        }
 
     private void animateScreen() {
         TranslateTransition transition1 = new TranslateTransition();
