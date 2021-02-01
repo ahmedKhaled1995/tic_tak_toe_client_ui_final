@@ -1,4 +1,4 @@
-# TicTacToe GameServer 
+# TicTacToe GameClient
 Welcome to the TicTacToe GameClient, a Java application allowing users to have an amazing experience when playing TicTacToe. <br/>
 ![1_RJMxLdTHqVBSijKmOO5MAg](https://user-images.)
 # Getting up and running
