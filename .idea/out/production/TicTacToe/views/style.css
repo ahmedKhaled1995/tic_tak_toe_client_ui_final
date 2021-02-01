@@ -1,0 +1,28 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 29, 2021, 7:20:28 PM
+    Author     : Sondos Alagmawy
+*/
+
+
+.bodybg{
+     -fx-background-image: url('blue-bricks.jpeg');
+     -fx-background-size: 100% 100%;    
+  }
+  
+  .buttontrans{
+      -fx-background-color: transparent;
+      -fx-text-fill: white;
+      -fx-font-size:40;
+      -fx-font-weight:bold;
+  }
+  .buttongame{
+      -fx-font-family:Algerian;
+      -fx-font-size:12;
+        -fx-effect: dropshadow(three-pass-box,#0000ff, 10, 0, 0, 0);
+      -fx-background-radius: 10px;
+  }
