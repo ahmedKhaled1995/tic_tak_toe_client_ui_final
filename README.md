@@ -29,6 +29,6 @@ Welcome to the TicTacToe GameClient, a Java application allowing users to have a
 ITI Team :<br/>
 Ahmed khaled<br/>
 Ahmed Zakria<br/>
-Shehab Essam<br/>
+Shehab El-Deen Alalkamy<br/>
 Sondos Medhat<br/>
 Hager Mohamed<br/>
